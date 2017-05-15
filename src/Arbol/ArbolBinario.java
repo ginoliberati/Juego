@@ -58,7 +58,7 @@ public interface ArbolBinario<E> extends GTTree<E>
 	 * @throws InvalidPositionException si la posición pasada por parámetro es inválida o el árbol está vacío.
 	 * @throws InvalidOperationException si v ya tiene un hijo izquierdo.
 	 */
-	public Position<E> addLeft(Position<E> v, E r) throws InvalidOperationException; InvalidPositionException;
+	public Position<E> addLeft(Position<E> v, E r) throws InvalidOperationException, InvalidPositionException;
     /*
 	 * *
 	 * Agrega un nodo con rótulo r como hijo derecho de un nodo dado.
@@ -68,8 +68,7 @@ public interface ArbolBinario<E> extends GTTree<E>
 	 * @throws InvalidPositionException si la posición pasada por parámetro es inválida o el árbol está vacío.
 	 * @throws InvalidOperationException si v ya tiene un hijo derecho.
 	 */
-	public Position<E> addRight(Position<E> v, E r) throws InvalidOperationException; 
-										InvalidPositionException;
+	public Position<E> addRight(Position<E> v, E r) throws InvalidOperationException, InvalidPositionException;
     /*
 	 * *
 	 * Elimina el nodo referenciado por una posición dada. Si el nodo tiene un único hijo, el nodo eliminado será reemplazado por su único hijo.
@@ -78,7 +77,7 @@ public interface ArbolBinario<E> extends GTTree<E>
      * @throws InvalidPositionException si la posición pasada por parámetro es inválida o el árbol está vacío.
 	 * @throws InvalidOperationException si el nodo a eliminar tiene mas de un hijo.
      */
-	public E remove(Position<E> v) throws InvalidOperationException; InvalidPositionException;
+	public E remove(Position<E> v) throws InvalidOperationException, InvalidPositionException;
 
 	/*
 	 * *
