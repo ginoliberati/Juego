@@ -89,7 +89,7 @@ public interface ArbolBinario<E> extends GTTree<E>
 	 */
 	//Pone a T1 y a T2 como subárboles de la hoja v, izquierdo y derecho respectivamente, si v no era hoja da InvalidPositionException.
 	  
-	public void Attach(Position<E> r, BinaryTree<E> T1, BinaryTree<E> T2) throws InvalidPositionException;
+	public void attach(Position<E> r, ArbolBinario<E> T1, ArbolBinario<E> T2) throws InvalidPositionException;
 	}
 
 	
