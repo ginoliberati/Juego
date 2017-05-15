@@ -3,24 +3,24 @@ package Arbol;
 public class ArbolitoBinario<E> implements ArbolBinario<E> {
 	protected BTnode<E> root;
 	protected int size;
-	/* crea el Arbol Binario */
+	/*Crea el Arbol Binario */
 	public ArbolitoBinario(){
 		root=null;
 		size=0;}
-	/*  * retorna si el arbol esta vacio.*/
+	/*Retorna un booleano indicando si el arbol esta vacio.*/
 
 	public boolean isEmpty(){return size==0;}
 	
-	/* devuelve la raiz.*/
+	/*Devuelve la raiz del arbol*/
 	public Position<E> root() throws EmptyTreeException{
 		if(root==null) throw new EmptyTreeException("Arbol vacio");
 		return root;}
-	/* devuelve un iterable con los hijos de un nodo */
+	/*Devuelve un iterable con los hijos de un nodo */
 	 public Iterable<Position<E>> children(Position<E> v) throws InvalidPositionException
 	 	{ }
 	
 	
-	 /* retorna el hijo derecho de un nodo*/
+	 /*Retorna el hijo derecho del nodo a (si tiene)*/
 	 public Position<E> right(Position <E> a) 
 			 throws InvalidPositionException, BoundaryViolationException{
 		 BTnode<E> aux=checkPosition(a);
@@ -28,19 +28,20 @@ public class ArbolitoBinario<E> implements ArbolBinario<E> {
 		 if(rightpos==null) throw new BoundaryViolationException("No hijo derecho");
 		 return rightpos;}
 	
-	 /*retorna si tiene nodo derecho*/
+	 /*Retorna un booleano indicando si el nodo a tiene hijo derecho*/
 	public boolean hasRight(Position<E> a) throws InvalidPositionException{
 		 BTnode<E> aux=checkPosition(a);
 		 Position<E> rightpos=aux.getRigth();
 		 return (rightpos!=null);}
 	
+	/*Retorna un booleano indicando si el nodo v es externo/hoja*/
 	public boolean isExternal(Position<E> v) throws InvalidPositionException{
 		BTnode<E> nodo = checkPosition( v );
 	    return (nodo.getLeft()==null && nodo.getRigth()==null);
 	}
 	
 	
-	/* remueve un nodo con cero o mas hijos*/
+	/*Remueve el nodo v si tiene cero o mas hijos*/
 	public E remove(Position<E> v) throws InvalidPositionException, InvalidOperationException{
 		BTnode<E> nodo=checkPosition(v);
 		BTnode<E> leftpos=nodo.getLeft();
@@ -68,12 +69,14 @@ public class ArbolitoBinario<E> implements ArbolBinario<E> {
 		PositionList<Position<E>> l = new MiLista<Position<E>>();
 		if( !isEmpty() ) pre( l, raiz );
 		return l;		
-	 
+	}
 	
+	/*Retorna un integer que indica la cantidad de nodos del arbol*/
 	public int size() {
 		return size;
 	}
 	
+	/*Retorna el hijo izquierdo del nodo v (si tiene)*/
 	public Position<E> left(Position<E> v) throws InvalidPositionException, BoundaryViolationException {
 		BTnode<E> nod = checkPosition(v);
 		
@@ -85,6 +88,7 @@ public class ArbolitoBinario<E> implements ArbolBinario<E> {
 		}
 	}
 	
+	/*Chequea si la posicion v corresponde a un nodo del arbol, si es asi, lo retorna*/
 	public BTnode<E> checkPosition(Position<E> v) throws InvalidPositionException {
 		if (v==null) {
 			throw new InvalidPositionException("El nodo pasado por parametro es nulo.");
@@ -98,6 +102,7 @@ public class ArbolitoBinario<E> implements ArbolBinario<E> {
 		}
 	}
 	
+	/*Retorna un booleano indicando si el nodo v tiene hijo izquierdo*/
 	public boolean hasLeft(Position<E> v) throws InvalidPositionException {
 		BTnode<E> nod = checkPosition(v);
 		
@@ -109,6 +114,7 @@ public class ArbolitoBinario<E> implements ArbolBinario<E> {
 		}
 	}
 	
+	/*Crea un nodo con elemento r y lo asigna como hijo izzquierdo de v*/
 	public Position<E> addLeft(Position<E> v, E r) throws InvalidOperationException, InvalidPositionException {
 		BTnode<E> nod = checkPosition(v);
 		BTnode<E> nuevonod = new BTnode<E>(r, null, null, null);
@@ -124,6 +130,7 @@ public class ArbolitoBinario<E> implements ArbolBinario<E> {
 		return nuevonod;
 	}
 	
+	/*Retorna el nodo padre de v*/
 	public Position<E> parent(Position<E> v) throws InvalidPositionException, BoundaryViolationException {
 		BTnode<E> nod = checkPosition(v);
 		
@@ -135,18 +142,21 @@ public class ArbolitoBinario<E> implements ArbolBinario<E> {
 		}
 	}
 	
+	/*Retorna un booleano indicando si el nodo v es raiz*/
 	public boolean isRoot(Position<E> v) throws InvalidPositionException {
 		BTnode<E> nod = checkPosition(v);
 		
 		return nod==root;
 	}
 	
+	/*Retorna un booleano indicando si el nodo v es interno*/
 	public boolean isInternal(Position<E> v) throws InvalidPositionException {
 		BTnode<E> nod = checkPosition(v);
 		
 		return nod.getLeft()!=null || nod.getRigth()!=null;
 	}
 	
+	/*Reemplaza el elemento del nodo v por e, retorna el anterior elemento*/
 	public E replace(Position<E> v, E e) throws InvalidPositionException {
 		BTnode<E> nod = checkPosition(v);
 		
@@ -156,6 +166,7 @@ public class ArbolitoBinario<E> implements ArbolBinario<E> {
 		return antiguo;
 	}
 	
+	/*Agrega el arbol binario T1 como hijo izquierdo del nodo v, y el arbol binario T2 como hijo derecho de v*/
 	public void attach(Position<E> v, ArbolBinario<E> T1, ArbolBinario<E> T2) throws InvalidPositionException {
 		BTnode<E> nod = checkPosition(v);
 		
@@ -175,8 +186,6 @@ public class ArbolitoBinario<E> implements ArbolBinario<E> {
 	}
 	
 	
-	
-	/*
 	
 	/*
 	
