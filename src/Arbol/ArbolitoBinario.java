@@ -18,22 +18,54 @@ public class ArbolitoBinario<E> implements ArbolBinario<E> {
 	/* devuelve un iterable con los hijos de un nodo */
 	 public Iterable<Position<E>> children(Position<E> v) throws InvalidPositionException
 	 	{ }
-	/* retorna si el nodo es interior */
-	 public boolean 
+	
 	
 	 /* retorna el hijo derecho de un nodo*/
 	 public Position<E> right(Position <E> a) 
-			 throws InvalidPositionException, BoundaryInvalidPosition{
-		 BTnodo<E> aux=checkposition(a);
-		 Position<E> rightpos=auz.getRigth();
-		 if(rigthpos==null) throw new BoundaryViolationException("No hijo derecho");
-		 return rigthpos;}
+			 throws InvalidPositionException, BoundaryViolationException{
+		 BTnode<E> aux=checkPosition(a);
+		 Position<E> rightpos=aux.getRigth();
+		 if(rightpos==null) throw new BoundaryViolationException("No hijo derecho");
+		 return rightpos;}
 	
 	 /*retorna si tiene nodo derecho*/
 	public boolean hasRight(Position<E> a) throws InvalidPositionException{
-		 BTnodo<E> aux=checkposition(a);
-		 Position<E> rightpos=auz.getRigth();
-		 return (rigthpos!=null);}
+		 BTnode<E> aux=checkPosition(a);
+		 Position<E> rightpos=aux.getRigth();
+		 return (rightpos!=null);}
+	
+	public boolean isExternal(Position<E> v) throws InvalidPositionException{
+		BTnode<E> nodo = checkPosition( v );
+	    return (nodo.getLeft()==null && nodo.getRigth()==null);
+	}
+	
+	
+	/* remueve un nodo con cero o mas hijos*/
+	public E remove(Position<E> v) throws InvalidPositionException, InvalidOperationException{
+		BTnode<E> nodo=checkPosition(v);
+		BTnode<E> leftpos=nodo.getLeft();
+		BTnode<E> rigthpos=nodo.getRigth();
+		if(leftpos!=null && rigthpos!=null) throw new InvalidOperationException("no se puede remover nod con dos hijos");
+		BTnode<E> ww;
+		if(leftpos!=null) ww=leftpos;
+		 else if(rigthpos!=null) ww=rigthpos;
+		   else ww=null;
+		if(nodo==root){
+			if(nodo==null)
+				ww.setParent(null);
+				root=ww;}
+		else {
+			BTnode<E> uu=nodo.getParent();
+			if(nodo==uu.getLeft()) uu.setLeft(ww);
+				else uu.setRigth(ww);
+			if(ww!=null) ww.setParent(uu);
+		}
+		size--;
+		return v.element();
+	}
+	  
+	 		
+	 
 	
 	public int size() {
 		return size;

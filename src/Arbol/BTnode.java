@@ -12,10 +12,10 @@ public class BTnode<E> implements Position<E> {
 	}
 	public E element(){return element;}
 	public void setElement(E o){element=o;}
-	public Position<E> getLeft(){return left;}
+	public BTnode<E> getLeft(){return left;}
 	public void setLeft(BTnode<E> a){left=a;}
-	public Position<E> getRigth(){return rigth;}
+	public BTnode<E> getRigth(){return rigth;}
 	public void setRigth(BTnode<E> a){rigth=a;}
-	public Position<E> getParent(){return parent;}
+	public BTnode<E> getParent(){return parent;}
 	public void setParent(BTnode<E> a){parent=a;}
 }
