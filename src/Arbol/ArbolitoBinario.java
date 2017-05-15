@@ -9,7 +9,7 @@ public class ArbolitoBinario<E> implements ArbolBinario<E> {
 		size=0;}
 	/*  * retorna si el arbol esta vacio.*/
 
-	public boolean IsEmpty(){return size==0;}
+	public boolean isEmpty(){return size==0;}
 	
 	/* devuelve la raiz.*/
 	public Position<E> root() throws EmptyTreeException{
@@ -51,7 +51,7 @@ public class ArbolitoBinario<E> implements ArbolBinario<E> {
 		 else if(rigthpos!=null) ww=rigthpos;
 		   else ww=null;
 		if(nodo==root){
-			if(nodo==null)
+			if(ww!=null)
 				ww.setParent(null);
 				root=ww;}
 		else {
@@ -64,7 +64,10 @@ public class ArbolitoBinario<E> implements ArbolBinario<E> {
 		return v.element();
 	}
 	  
-	 		
+	public Iterable<Position<E>> positions() {
+		PositionList<Position<E>> l = new MiLista<Position<E>>();
+		if( !isEmpty() ) pre( l, raiz );
+		return l;		
 	 
 	
 	public int size() {
@@ -176,15 +179,12 @@ public class ArbolitoBinario<E> implements ArbolBinario<E> {
 	/*
 	
 	/*
-	 * 2)root();
+	
 	 
 	3)children();
-	4)sExternal();
-	5)rigth();
-	6)hasRigth();
 	7)createRoot();
 	8)addrigth():
-	9)remove( 
+
 	*/
 	
 }
