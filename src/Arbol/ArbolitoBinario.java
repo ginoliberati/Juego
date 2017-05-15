@@ -13,7 +13,7 @@ public class ArbolitoBinario<E> implements ArbolBinario<E> {
 	
 	/*Devuelve la raiz del arbol*/
 	public Position<E> root() throws EmptyTreeException{
-		if(root==null) throw new EmptyTreeException("Arbol vacio");
+		if(root==null) throw new EmptyTreeException();
 		return root;}
 	/*Devuelve un iterable con los hijos de un nodo */
 	 public Iterable<Position<E>> children(Position<E> v) throws InvalidPositionException
@@ -67,7 +67,7 @@ public class ArbolitoBinario<E> implements ArbolBinario<E> {
 	  
 	public Iterable<Position<E>> positions() {
 		PositionList<Position<E>> l = new MiLista<Position<E>>();
-		if( !isEmpty() ) pre( l, raiz );
+		if( !isEmpty() ) pre( l, root );
 		return l;		
 	}
 	
