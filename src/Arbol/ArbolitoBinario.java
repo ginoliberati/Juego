@@ -1,5 +1,5 @@
 package Arbol;
-
+import ListaDoble.*;
 public class ArbolitoBinario<E> implements ArbolBinario<E> {
 	protected BTnode<E> root;
 	protected int size;
@@ -8,17 +8,22 @@ public class ArbolitoBinario<E> implements ArbolBinario<E> {
 		root=null;
 		size=0;}
 	/*Retorna un booleano indicando si el arbol esta vacio.*/
-
 	public boolean isEmpty(){return size==0;}
 	
 	/*Devuelve la raiz del arbol*/
 	public Position<E> root() throws EmptyTreeException{
 		if(root==null) throw new EmptyTreeException();
 		return root;}
-	/*Devuelve un iterable con los hijos de un nodo */
-	 public Iterable<Position<E>> children(Position<E> v) throws InvalidPositionException
-	 	{ }
 	
+	/*Devuelve un iterable con los hijos de un nodo */
+	 public Iterable<Position<E>> children(Position<E> v) throws InvalidPositionException{
+		 PositionList<Position<E>> children= new ListaDoble<Position<E>>();
+		try
+		{ if(hasLeft(v)) children.addLast(left(v));
+		 if(hasRight(v)) children.addLast(right(v));
+		 	return children;}
+		catch(BoundaryViolationException e){System.out.println(e.getMessage());return null;}
+	 		}		
 	
 	 /*Retorna el hijo derecho del nodo a (si tiene)*/
 	 public Position<E> right(Position <E> a) 
@@ -37,9 +42,7 @@ public class ArbolitoBinario<E> implements ArbolBinario<E> {
 	/*Retorna un booleano indicando si el nodo v es externo/hoja*/
 	public boolean isExternal(Position<E> v) throws InvalidPositionException{
 		BTnode<E> nodo = checkPosition( v );
-	    return (nodo.getLeft()==null && nodo.getRigth()==null);
-	}
-	
+	    return (nodo.getLeft()==null && nodo.getRigth()==null);}
 	
 	/*Remueve el nodo v si tiene cero o mas hijos*/
 	public E remove(Position<E> v) throws InvalidPositionException, InvalidOperationException{
@@ -66,8 +69,8 @@ public class ArbolitoBinario<E> implements ArbolBinario<E> {
 	}
 	  
 	public Iterable<Position<E>> positions() {
-		PositionList<Position<E>> l = new MiLista<Position<E>>();
-		if( !isEmpty() ) pre( l, root );
+		PositionList<Position<E>> l = new ListaDoble<Position<E>>();
+		if( size!=0 ) pre( l, root );
 		return l;		
 	}
 	
