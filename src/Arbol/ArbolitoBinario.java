@@ -1,5 +1,6 @@
 package Arbol;
 import ListaDoble.*;
+import java.util.Iterator;
 public class ArbolitoBinario<E> implements ArbolBinario<E> {
 	protected BTnode<E> root;
 	protected int size;
@@ -83,6 +84,40 @@ public class ArbolitoBinario<E> implements ArbolBinario<E> {
 	/*Retorna un integer que indica la cantidad de nodos del arbol*/
 	public int size() {
 		return size;
+	}
+	/* retorna una coleccion iterable de un nodo del arbol*/
+	public Iterable<Position<E>> positions() {
+		PositionList<Position<E>> position= new ListaDoble<Position<E>>();
+	 	try{ if(size!=0) preordenPosition(root(),position);
+	 	return position;}
+		catch(InvalidPositionException  | EmptyTreeException e){System.out.println(e.getMessage()); return null;}
+	}
+	/*crea la raiz del arbol si la misma no existe*/
+	public Position<E> createRoot(E r) throws InvalidOperationException{
+		if(size==0) throw new InvalidOperationException("No puede crearse la raiz");
+		BTnode<E> nodo=new BTnode(r,null,null,null);
+		root=nodo;
+		return nodo;
+	}
+	
+	/* devuelve un iterador con los elementos de un nodo*/
+	public Iterator<E> iterator() {
+		Iterable<Position<E>> positions= positions();
+		PositionList<E> elements= new ListaDoble<E>();
+		for(Position<E> pos:positions)
+			elements.addLast(pos.element());
+		return elements.iterator();
+		
+		
+	} 
+	
+	/*crea una lista almacenando los nodos en un subarbol de nodos*/
+	protected void preordenPosition(Position<E> v,PositionList<Position<E>> pos)
+						throws InvalidPositionException{
+		pos.addLast(v);
+	try{	if(hasLeft(v)) preordenPosition(left(v),pos);
+		if(hasRight(v))preordenPosition(right(v),pos);}
+	catch(BoundaryViolationException e){System.out.println(e.getMessage());}
 	}
 	
 	/*Retorna el hijo izquierdo del nodo v (si tiene)*/

@@ -28,7 +28,7 @@ public interface GTTree<E> extends Iterable<E>
 		 * Devuelve una colección iterable de las posiciones de los nodos del árbol.
 		 * @return Colección iterable de las posiciones de los nodos del árbol.
 		 */
-		public Iterable<Position<E>> positions();
+		public Iterable<Position<E>> positions() throws InvalidPositionException,BoundaryViolationException,EmptyTreeException;
 		
 		/* *
 		 * Reemplaza el elemento almacenado en la posición dada por el elemento pasado por parámetro. Devuelve el elemento reemplazado.
