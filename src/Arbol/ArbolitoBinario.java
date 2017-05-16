@@ -67,12 +67,18 @@ public class ArbolitoBinario<E> implements ArbolBinario<E> {
 		size--;
 		return v.element();
 	}
+	/*Cambia el hijo derecho de un nodo, si el mismo esta vacio*/
+	public Position<E> addRight(Position<E> v, E r) throws InvalidOperationException, InvalidPositionException {
+		BTnode<E> nod = checkPosition(v);
+		BTnode<E> nuevonod = new BTnode<E>(r, null, null, null);
+		if (nod.getRigth()!=null) {
+			nod.setRigth(nuevonod);}
+		else {
+			throw new InvalidOperationException("El nodo ya tiene hijo izquierdo.");}
+		size++;
+		
+		return nuevonod;}
 	  
-	public Iterable<Position<E>> positions() {
-		PositionList<Position<E>> l = new ListaDoble<Position<E>>();
-		if( size!=0 ) pre( l, root );
-		return l;		
-	}
 	
 	/*Retorna un integer que indica la cantidad de nodos del arbol*/
 	public int size() {
@@ -191,9 +197,6 @@ public class ArbolitoBinario<E> implements ArbolBinario<E> {
 	
 	
 	/*
-	
-	 
-	3)children();
 	7)createRoot();
 	8)addrigth():
 
