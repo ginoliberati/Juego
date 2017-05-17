@@ -64,10 +64,22 @@ public class Logica {
 		}
 	}
 	
-	/* *Retorna un booleano que indica si la computadora gano o no
+	/* *Retorna un booleano que indica si la computadora gano
 	 * @returns gano - boolean*/
 	public boolean Gano() {
 		return gano;
+	}
+	
+	/* *Retorna un booleano que indica si la computadora perdio*/
+	public boolean Perdio() {
+		boolean b=false;
+		try {
+			b = !gano && A.isExternal(cursor);
+		} catch(InvalidPositionException e) {
+			System.out.println("Error: "+e.getMessage());
+		}
+		
+		return b;
 	}
 	
 	/* *Vuelve el cursor a su posicion inicial: la raiz del arbol*/
