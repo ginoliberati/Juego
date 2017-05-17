@@ -22,6 +22,10 @@ public class Logica {
 		return "Es "+cursor.element()+"?";
 	}
 	
+	public String getElement() {
+		return cursor.element();
+	}
+	
 	/* *Mueve la posicion cursor hacia su hijo derecho.
 	 * Se llama si el usuario responde "Si" en el juego.*/
 	public void Si() {
