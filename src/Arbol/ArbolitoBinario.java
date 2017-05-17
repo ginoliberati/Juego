@@ -72,10 +72,10 @@ public class ArbolitoBinario<E> implements ArbolBinario<E> {
 	public Position<E> addRight(Position<E> v, E r) throws InvalidOperationException, InvalidPositionException {
 		BTnode<E> nod = checkPosition(v);
 		BTnode<E> nuevonod = new BTnode<E>(r, null, null, null);
-		if (nod.getRigth()!=null) {
+		if (nod.getRigth()==null) {
 			nod.setRigth(nuevonod);}
 		else {
-			throw new InvalidOperationException("El nodo ya tiene hijo izquierdo.");}
+			throw new InvalidOperationException("El nodo ya tiene hijo derecho.");}
 		size++;
 		
 		return nuevonod;}
@@ -94,7 +94,7 @@ public class ArbolitoBinario<E> implements ArbolBinario<E> {
 	}
 	/*crea la raiz del arbol si la misma no existe*/
 	public Position<E> createRoot(E r) throws InvalidOperationException{
-		if(size==0) throw new InvalidOperationException("No puede crearse la raiz");
+		if(size!=0) throw new InvalidOperationException("No puede crearse la raiz");
 		BTnode<E> nodo=new BTnode(r,null,null,null);
 		root=nodo;
 		return nodo;

@@ -60,8 +60,8 @@ public class Logica {
 	 * @param diferencia - String*/
 	public void Agregar(String elem, String diferencia) {
 		try {
-			A.addLeft(cursor, cursor.element());
 			A.addRight(cursor, elem);
+			A.addLeft(cursor, cursor.element());
 			A.replace(cursor, diferencia);
 		} catch (InvalidPositionException | InvalidOperationException e) {
 			System.out.println("Error: "+e.getMessage());
