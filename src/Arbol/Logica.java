@@ -2,35 +2,22 @@ package Arbol;
 import java.io.*;
 import java.util.*;
 import java.util.logging.*;
+import ListaDoble.*;
 public class Logica implements Serializable {
-	/**
-	 * 
-	 */
-	
 	private ArbolBinario<String> A;
 	private Position<String> cursor;
 	private boolean gano;
-	ObjectOutput output;
+	private PositionList<Position<String>> listaD;
 	/* *Crea un arbol binario A con raiz "una guitarra", y la asigna a 
 	 * la posicion cursor*/
 	public Logica() {
 		try {
 			A = new ArbolitoBinario<String>();
 			A.createRoot("una guitarra");
-			cursor=A.root();
-			 OutputStream file = new FileOutputStream("/Users/GINO/Desktop/andar.caca");
-		     OutputStream buffer = new BufferedOutputStream(file);
-		     output = new ObjectOutputStream(buffer);
-		      try{
-		        output.writeObject(A);}
-		      finally{
-		        output.close();}
-		    }  
+			cursor=A.root(); }  
 		 catch (EmptyTreeException | InvalidOperationException e) {
 			System.out.println("Error: "+e.getMessage());}
-		 catch(IOException ex){
-		      fLogger.log(Level.SEVERE, "Cannot perform output.", ex);
-		    }}
+		}
 	 
 	/* *Genera una pregunta dado el contenido de la posicion cursor*/
 	public String getPregunta() {
@@ -111,11 +98,19 @@ public class Logica implements Serializable {
 		}
 	}
 	public void Guardar(){
-		try{ output.writeObject(A);}
-		 finally{output.close();}    //use buffering
-		catch(IOException ex){
-		      fLogger.log(Level.SEVERE, "Cannot perform output.", ex);}   
-  }
+		try {
+	         FileOutputStream fileOut =
+	         new FileOutputStream("/Users/GINO/Desktop/universidad/Arbol.ser");
+	         ObjectOutputStream out = new ObjectOutputStream(fileOut);
+	         out.writeObject(A);
+	         out.close();
+	         fileOut.close();
+	         System.out.printf("Serialized data is saved in /Users/GINO/Desktop/universidad/Arbol.ser");
+	      }catch(IOException i) {
+	         i.printStackTrace();
+	      }}
+	
+	
 	private static final Logger fLogger =
 		    Logger.getLogger(Logica.class.getPackage().getName());
 }

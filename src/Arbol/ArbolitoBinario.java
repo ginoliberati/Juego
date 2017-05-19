@@ -231,6 +231,7 @@ public class ArbolitoBinario<E> implements ArbolBinario<E>,Serializable{
 		catch (EmptyTreeException e) {
 			throw new InvalidPositionException("El arbol pasado por parametro esta vacio.");
 		}
+		
 	}
 	
 	

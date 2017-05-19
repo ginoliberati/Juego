@@ -287,7 +287,7 @@ public class inteface implements ActionListener{
 			 else Mostrador.setText(Arbol.getPregunta());}
 		
 		if(e.getSource()==Salir){Arbol.Guardar();
-								System.exit(0);}
+								 System.exit(0);}
 		
 		
 		
