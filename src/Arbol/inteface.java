@@ -19,19 +19,30 @@ import javax.swing.JTree;
 import javax.swing.JTextPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
+import javax.swing.JTextArea;
+import javax.swing.JComboBox;
+import javax.swing.JLayeredPane;
 
 public class inteface implements ActionListener{
-	String resp1=null;
-	String resp2=null;
+	private String resp1=null;
+	private String resp2=null;
 	private Logica Arbol;
-	private JFrame frame;
+	private JFrame Ventanita;
+	private JFrame frmAdivinador;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField Mostrador;
 	private JButton BotonSi,BotonNO,BotonJugar,btnNewButton_1; 
-	private JTextField Respuesta;
-	private JButton AceptarResp;
+	private JFrame Ventani;
+	private JTextField Aparicion;
+	private JTextField Resp1;
+	private JTextField Resp2;
+	private JTextField Aparicion2;
+	private JButton Aceptar1;
+	private JButton Aceptar2;
+	private JButton ArbolA;
+	private JButton Salir;
 	/**
 	 * Launch the application.
 	 */
@@ -40,7 +51,7 @@ public class inteface implements ActionListener{
 			public void run() {
 				try {
 					inteface window = new inteface();
-					window.frame.setVisible(true);
+					window.frmAdivinador.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -58,17 +69,20 @@ public class inteface implements ActionListener{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.getContentPane().setForeground(Color.BLACK);
-		frame.setBounds(100, 100, 563, 603);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmAdivinador = new JFrame();
+		frmAdivinador.setForeground(Color.BLUE);
+		frmAdivinador.setTitle("Adivinador");
+		frmAdivinador.getContentPane().setForeground(Color.BLUE);
+		frmAdivinador.setBounds(100, 100, 563, 603);
+		frmAdivinador.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		BotonJugar = new JButton("Jugar");
 		BotonJugar.setForeground(Color.RED);
 		BotonJugar.addActionListener(this);
 		BotonJugar.setActionCommand("Jugar");
 		
-		JButton btnNewButton_1 = new JButton("Salir");
+		Salir = new JButton("Salir");
+		Salir.setEnabled(false);
 		
 		textField = new JTextField();
 		textField.setFont(new Font("Lucida Sans Typewriter", Font.PLAIN, 9));
@@ -108,60 +122,46 @@ public class inteface implements ActionListener{
 		BotonNO.setActionCommand("No");
 		BotonNO.setEnabled(false);
 		
-		Respuesta = new JTextField();
-		Respuesta.setEnabled(false);
-		Respuesta.setColumns(10);
+		ArbolA = new JButton("Arbol Almacenado");
+		ArbolA.setEnabled(false);
 		
-		AceptarResp = new JButton("Aceptar ");
-		AceptarResp.setEnabled(false);
-		AceptarResp.addActionListener(this);
-		AceptarResp.setActionCommand("Aceptar");
-		
-		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
+		GroupLayout groupLayout = new GroupLayout(frmAdivinador.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap(217, Short.MAX_VALUE)
 					.addComponent(BotonJugar, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
 					.addGap(110)
-					.addComponent(btnNewButton_1)
+					.addComponent(Salir)
 					.addContainerGap())
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(textField, GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+						.addComponent(textField_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+						.addComponent(textField_2, GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE))
+					.addGap(395))
+				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(92)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(Mostrador, GroupLayout.PREFERRED_SIZE, 408, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(6)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(Respuesta, GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(BotonSi, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
-									.addComponent(BotonNO, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE)))))
+							.addComponent(BotonSi, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(BotonNO, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE)))
 					.addGap(63))
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(textField_2, GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
-					.addGap(395))
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(497, Short.MAX_VALUE))
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(textField, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(440, Short.MAX_VALUE))
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(229, Short.MAX_VALUE)
-					.addComponent(AceptarResp)
-					.addGap(217))
+					.addContainerGap(217, Short.MAX_VALUE)
+					.addComponent(ArbolA)
+					.addGap(187))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnNewButton_1)
+						.addComponent(Salir)
 						.addComponent(BotonJugar, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE))
 					.addGap(54)
 					.addComponent(Mostrador, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
@@ -169,11 +169,9 @@ public class inteface implements ActionListener{
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(BotonNO, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
 						.addComponent(BotonSi, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE))
-					.addGap(37)
-					.addComponent(Respuesta, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(AceptarResp)
-					.addPreferredGap(ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+					.addGap(80)
+					.addComponent(ArbolA)
+					.addPreferredGap(ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
 					.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -181,11 +179,80 @@ public class inteface implements ActionListener{
 					.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGap(15))
 		);
-		frame.getContentPane().setLayout(groupLayout);
+		frmAdivinador.getContentPane().setLayout(groupLayout);
+		
+		Ventani = new JFrame();
+		Ventani.setBounds(100, 100, 450, 300);
+		Ventani.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Ventani.setEnabled(true);
+		Ventani.setVisible(false);
+		
+		Aparicion = new JTextField();
+		Aparicion.setText("¿En que pensabas?\n");
+		Aparicion.setEditable(false);
+		Aparicion.setColumns(10);
+		
+		Resp1 = new JTextField();
+		Resp1.setColumns(10);
+		
+		Resp2 = new JTextField();
+		Resp2.setText("¿Qué diferencia tiene con?");
+		Resp2.setEditable(false);
+		Resp2.setColumns(10);
+		
+		Aparicion2 = new JTextField();
+		Aparicion2.setColumns(10);
+		
+		Aceptar1 = new JButton("Aceptar\n");
+		Aceptar1.addActionListener(this);
+		Aceptar1.setVisible(false);
+		
+		Aceptar2 = new JButton("Aceptar\n");
+		Aceptar2.addActionListener(this);
+		
+		GroupLayout groupLayou = new GroupLayout(Ventani.getContentPane());
+		groupLayou.setHorizontalGroup(
+			groupLayou.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayou.createSequentialGroup()
+					.addGroup(groupLayou.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayou.createSequentialGroup()
+							.addGap(41)
+							.addGroup(groupLayou.createParallelGroup(Alignment.LEADING)
+								.addComponent(Resp1, GroupLayout.PREFERRED_SIZE, 379, GroupLayout.PREFERRED_SIZE)
+								.addComponent(Aparicion, GroupLayout.PREFERRED_SIZE, 379, GroupLayout.PREFERRED_SIZE)
+								.addComponent(Resp2, GroupLayout.PREFERRED_SIZE, 379, GroupLayout.PREFERRED_SIZE)
+								.addComponent(Aparicion2, GroupLayout.PREFERRED_SIZE, 379, GroupLayout.PREFERRED_SIZE)))
+						.addGroup(groupLayou.createSequentialGroup()
+							.addGap(167)
+							.addComponent(Aceptar1))
+						.addGroup(groupLayou.createSequentialGroup()
+							.addGap(171)
+							.addComponent(Aceptar2, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(30, Short.MAX_VALUE))
+		);
+		groupLayou.setVerticalGroup(
+			groupLayou.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayou.createSequentialGroup()
+					.addGap(36)
+					.addComponent(Aparicion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(Resp1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(Aceptar1)
+					.addPreferredGap(ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+					.addComponent(Resp2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(Aparicion2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(Aceptar2)
+					.addGap(17))
+		);
+		Ventani.getContentPane().setLayout(groupLayou);
+
 	}
 	public void actionPerformed(ActionEvent e){
 		String evento=e.getActionCommand();
-		if(evento.equals("Jugar")){
+		if(e.getSource()==BotonJugar){
 			 Arbol=new Logica(); 
 			 textField.setEnabled(true);
 				textField_1.setEnabled(true);
@@ -193,24 +260,37 @@ public class inteface implements ActionListener{
 				Mostrador.setEnabled(true);
 				Mostrador.setText("¿Estas Pensando en "+Arbol.getElement()+" ?");
 				BotonSi.setEnabled(true);
-				BotonNO.setEnabled(true);}
-		 if(evento.equals("No")){
-			if(!Arbol.Perdio())Arbol.No();
-			else{ 
-		       Mostrador.setText("En que pensaba");
-				Respuesta.setEnabled(true);
-				AceptarResp.setEnabled(true);}
-		if(evento.equals("Acpetar")){
-			if(resp1==null){resp1=Respuesta.getText(); 
-			AceptarResp.setEnabled(false);
-			Mostrador.setText("Que Diferencia tiene "+Arbol.getElement()+"Con lo que pensabas");
-			AceptarResp.setEnabled(true);}
-			else {resp2=Respuesta.getText(); 
-				  Arbol.Agregar(resp1,resp2);
-				  resp1=null;
-				  resp2=null;}
-			}	
+				BotonNO.setEnabled(true);
+				ArbolA.setEnabled(true);
+				Salir.setEnabled(true);
+				BotonJugar.setEnabled(false);}
+		 if(e.getSource()==BotonNO){
+			if(!Arbol.Perdio()){Arbol.No();Mostrador.setText(Arbol.getPregunta());}
+			else{ Ventani.setVisible(true);}
+			}
+		
+		 if(e.getSource()==Aceptar2){
+			resp2=Aparicion2.getText(); 
+			resp1=Resp1.getText();
+			Resp2.setText("Que diferencia tiene con "+Arbol.getElement());
+			Ventani.dispose();
+			Arbol.Agregar(resp1, resp2);
+			Arbol.reset();
+			Aparicion2.setText("");
+			Resp1.setText("");
+			Mostrador.setText(Arbol.getPregunta());
+			}
+			
+		if(e.getSource()==BotonSi){
+			Arbol.Si();
+			if(Arbol.Gano()){Mostrador.setText("Pa boo");}
+			 else Mostrador.setText(Arbol.getPregunta());}
+		
+		if(e.getSource()==Salir){Arbol.Guardar();
+								System.exit(0);}
+		
+		
+		
 		 }
-	
 	}
-}
+

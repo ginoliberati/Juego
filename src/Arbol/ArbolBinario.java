@@ -1,6 +1,6 @@
 package Arbol;
 
-public interface ArbolBinario<E> extends GTTree<E>
+public interface ArbolBinario<E> extends GTTree<E> 
 {
 	
 	/*

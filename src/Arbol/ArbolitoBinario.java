@@ -1,7 +1,9 @@
 package Arbol;
 import ListaDoble.*;
+
+import java.io.Serializable;
 import java.util.Iterator;
-public class ArbolitoBinario<E> implements ArbolBinario<E> {
+public class ArbolitoBinario<E> implements ArbolBinario<E>,Serializable{
 	protected BTnode<E> root;
 	protected int size;
 	/*Crea el Arbol Binario */
@@ -163,7 +165,7 @@ public class ArbolitoBinario<E> implements ArbolBinario<E> {
 		BTnode<E> nod = checkPosition(v);
 		BTnode<E> nuevonod = new BTnode<E>(r, null, null, null);
 		
-		if (nod.getLeft()!=null) {
+		if (nod.getLeft()==null) {
 			nod.setLeft(nuevonod);
 		}
 		else {

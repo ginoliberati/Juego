@@ -1,7 +1,7 @@
 package Arbol;
 import java.lang.Iterable;
 import java.util.Iterator;
-public interface GTTree<E> extends Iterable<E>
+public interface GTTree<E> extends Iterable<E> 
 	{
 		/*
 		 * *
