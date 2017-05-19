@@ -2,11 +2,15 @@ package Arbol;
 import java.io.*;
 import java.util.*;
 import java.util.logging.*;
-public class Logica  {
+public class Logica implements Serializable {
+	/**
+	 * 
+	 */
+	
 	private ArbolBinario<String> A;
 	private Position<String> cursor;
 	private boolean gano;
-	
+	ObjectOutput output;
 	/* *Crea un arbol binario A con raiz "una guitarra", y la asigna a 
 	 * la posicion cursor*/
 	public Logica() {
@@ -14,14 +18,20 @@ public class Logica  {
 			A = new ArbolitoBinario<String>();
 			A.createRoot("una guitarra");
 			cursor=A.root();
-			}
+			 OutputStream file = new FileOutputStream("/Users/GINO/Desktop/andar.caca");
+		     OutputStream buffer = new BufferedOutputStream(file);
+		     output = new ObjectOutputStream(buffer);
+		      try{
+		        output.writeObject(A);}
+		      finally{
+		        output.close();}
+		    }  
 		 catch (EmptyTreeException | InvalidOperationException e) {
-			System.out.println("Error: "+e.getMessage());}}
-	
-	
-	
-	
-	
+			System.out.println("Error: "+e.getMessage());}
+		 catch(IOException ex){
+		      fLogger.log(Level.SEVERE, "Cannot perform output.", ex);
+		    }}
+	 
 	/* *Genera una pregunta dado el contenido de la posicion cursor*/
 	public String getPregunta() {
 		return "Es "+cursor.element()+"?";
@@ -101,21 +111,10 @@ public class Logica  {
 		}
 	}
 	public void Guardar(){
-		try{
-		      //use buffering
-		      OutputStream file = new FileOutputStream("/Users/GINO/Desktop/andar.caca");
-		      OutputStream buffer = new BufferedOutputStream(file);
-		      ObjectOutput output = new ObjectOutputStream(buffer);
-		      try{
-		        output.writeObject(A);
-		      }
-		      finally{
-		        output.close();
-		      }
-		    }  
-		    catch(IOException ex){
-		      fLogger.log(Level.SEVERE, "Cannot perform output.", ex);
-		    }
+		try{ output.writeObject(A);}
+		 finally{output.close();}    //use buffering
+		catch(IOException ex){
+		      fLogger.log(Level.SEVERE, "Cannot perform output.", ex);}   
   }
 	private static final Logger fLogger =
 		    Logger.getLogger(Logica.class.getPackage().getName());
