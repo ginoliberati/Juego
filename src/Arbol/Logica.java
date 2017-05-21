@@ -8,13 +8,15 @@ public class Logica implements Serializable {
 	private Position<String> cursor;
 	private boolean gano;
 	private PositionList<Position<String>> listaD;
+	private int cantObjetos;
 	/* *Crea un arbol binario A con raiz "una guitarra", y la asigna a 
 	 * la posicion cursor*/
 	public Logica() {
 		try {
 			A = new ArbolitoBinario<String>();
 			A.createRoot("una guitarra");
-			cursor=A.root(); }  
+			cursor=A.root();
+			cantObjetos=1;}  
 		 catch (EmptyTreeException | InvalidOperationException e) {
 			System.out.println("Error: "+e.getMessage());}
 		}
@@ -65,6 +67,7 @@ public class Logica implements Serializable {
 			A.addRight(cursor, elem);
 			A.addLeft(cursor, cursor.element());
 			A.replace(cursor, diferencia);
+			cantObjetos++;
 		} catch (InvalidPositionException | InvalidOperationException e) {
 			System.out.println("Error: "+e.getMessage());
 		}
