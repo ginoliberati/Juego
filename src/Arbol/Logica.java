@@ -110,6 +110,13 @@ public class Logica implements Serializable {
 	         i.printStackTrace();
 	      }}
 	// esto es nuevo
+	public int cantObjetos() {
+		return cantObjetos;
+	}
+	
+	public int cantPreguntas() {
+		return cantObjetos-1;
+	}
 	
 	
 	private static final Logger fLogger =
