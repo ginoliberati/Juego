@@ -280,7 +280,8 @@ public class inteface implements ActionListener{
 				BotonNO.setEnabled(true);
 				ArbolA.setEnabled(true);
 				Salir.setEnabled(true);
-				Mostrador.setVisible(true);}
+				Mostrador.setVisible(true);
+				Actualizar();}
 		
 		 if(e.getSource()==BotonNO){
 			if(!Arbol.Perdio()){Arbol.No();Mostrador.setText(Arbol.getPregunta());}
@@ -297,6 +298,7 @@ public class inteface implements ActionListener{
 			Aparicion2.setText("");
 			Resp1.setText("");
 			Mostrador.setText(Arbol.getPregunta());
+			Actualizar();
 			}
 			
 		if(e.getSource()==BotonSi){
@@ -311,6 +313,7 @@ public class inteface implements ActionListener{
 				BotonNO.setVisible(false);
 				ArbolA.setVisible(false);
 				BotonJugar.setEnabled(true);
+				Actualizar();
 				}
 			 else Mostrador.setText(Arbol.getPregunta());}
 		
@@ -320,5 +323,10 @@ public class inteface implements ActionListener{
 		
 		
 		 }
+		private void Actualizar(){
+			textField_2.setText("Cant. de Preg. Almacendas="+Arbol.cantPreguntas());
+			textField.setText("Tamaño del Arbol=");
+			textField_1.setText("Cant. de Obj. Almacenados="+Arbol.cantObjetos());
+		}
 	}
 
