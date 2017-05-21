@@ -89,15 +89,18 @@ public class inteface implements ActionListener{
 		textField.setToolTipText("");
 		textField.setEditable(false);
 		textField.setEnabled(false);
+		textField.setVisible(false);
 
 		textField.setColumns(10);
 		textField.setText("Tamaño del Arbol=0");
+		textField.setVisible(false);
 		
 		textField_1 = new JTextField();
 		textField_1.setFont(new Font("Lucida Sans Typewriter", Font.PLAIN, 9));
 		textField_1.setColumns(10);
 		textField_1.setText("Cant. de Obj. Almacenados=0");
 		textField_1.setEnabled(false);
+		textField_1.setVisible(false);
 		
 		textField_2 = new JTextField();
 		textField_2.setFont(new Font("Lucida Sans Typewriter", Font.PLAIN, 9));
@@ -105,6 +108,7 @@ public class inteface implements ActionListener{
 		textField_2.setEnabled(false);
 		textField_2.setColumns(10);
 		textField_2.setText("Cant. de Preg. Almacendas=0");
+		textField_2.setVisible(false);
 		
 		Mostrador = new JTextField();
 		Mostrador.setEnabled(false);
@@ -115,15 +119,18 @@ public class inteface implements ActionListener{
 		BotonSi.addActionListener(this);
 		BotonSi.setActionCommand("Si");
 		BotonSi.setEnabled(false);
+		BotonSi.setVisible(false);
 		
 		BotonNO = new JButton("No\n");
 		BotonNO.setFont(new Font("Microsoft Sans Serif", Font.BOLD, 22));
 		BotonNO.addActionListener(this);
 		BotonNO.setActionCommand("No");
 		BotonNO.setEnabled(false);
+		BotonNO.setVisible(false);
 		
 		ArbolA = new JButton("Arbol Almacenado");
 		ArbolA.setEnabled(false);
+		ArbolA.setVisible(false);
 		
 		GroupLayout groupLayout = new GroupLayout(frmAdivinador.getContentPane());
 		groupLayout.setHorizontalGroup(
@@ -255,15 +262,24 @@ public class inteface implements ActionListener{
 		if(e.getSource()==BotonJugar){
 			 Arbol=new Logica(); 
 			 textField.setEnabled(true);
+			 textField.setVisible(true);
 				textField_1.setEnabled(true);
+				textField_1.setVisible(true);
+				textField_2.setVisible(true);
+				Mostrador.setVisible(true);
+				Mostrador.setText(Arbol.getPregunta());
+				BotonSi.setVisible(true);
+				BotonNO.setVisible(true);
+				ArbolA.setVisible(true);
+				Salir.setVisible(true);
+				BotonJugar.setEnabled(false);
 				textField_2.setEnabled(true);
 				Mostrador.setEnabled(true);
-				Mostrador.setText("¿Estas Pensando en "+Arbol.getElement()+" ?");
 				BotonSi.setEnabled(true);
 				BotonNO.setEnabled(true);
 				ArbolA.setEnabled(true);
-				Salir.setEnabled(true);
-				BotonJugar.setEnabled(false);}
+				Salir.setEnabled(true);}
+		
 		 if(e.getSource()==BotonNO){
 			if(!Arbol.Perdio()){Arbol.No();Mostrador.setText(Arbol.getPregunta());}
 			else{ Ventani.setVisible(true);}
