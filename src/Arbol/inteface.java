@@ -113,6 +113,7 @@ public class inteface implements ActionListener{
 		Mostrador = new JTextField();
 		Mostrador.setEnabled(false);
 		Mostrador.setColumns(10);
+		Mostrador.setVisible(false);
 		
 		BotonSi = new JButton("Si");
 		BotonSi.setFont(new Font("Microsoft Sans Serif", Font.PLAIN, 22));
@@ -278,17 +279,18 @@ public class inteface implements ActionListener{
 				BotonSi.setEnabled(true);
 				BotonNO.setEnabled(true);
 				ArbolA.setEnabled(true);
-				Salir.setEnabled(true);}
+				Salir.setEnabled(true);
+				Mostrador.setVisible(true);}
 		
 		 if(e.getSource()==BotonNO){
 			if(!Arbol.Perdio()){Arbol.No();Mostrador.setText(Arbol.getPregunta());}
-			else{ Ventani.setVisible(true);}
+			else{Resp2.setText("¿Qué diferencia tiene con "+Arbol.getElement()+"?"); 
+				 Ventani.setVisible(true);}
 			}
 		
 		 if(e.getSource()==Aceptar2){
 			resp2=Aparicion2.getText(); 
 			resp1=Resp1.getText();
-			Resp2.setText("Que diferencia tiene con "+Arbol.getElement());
 			Ventani.dispose();
 			Arbol.Agregar(resp1, resp2);
 			Arbol.reset();
@@ -299,7 +301,17 @@ public class inteface implements ActionListener{
 			
 		if(e.getSource()==BotonSi){
 			Arbol.Si();
-			if(Arbol.Gano()){Mostrador.setText("Pa boo");}
+			if(Arbol.Gano()){Mostrador.setText("Siempre Adivino :-)");
+				textField.setVisible(true);
+				textField_1.setEnabled(true);
+				textField_1.setVisible(true);
+				textField_2.setVisible(true);
+				Mostrador.setVisible(true);
+				BotonSi.setVisible(false);
+				BotonNO.setVisible(false);
+				ArbolA.setVisible(false);
+				BotonJugar.setEnabled(true);
+				}
 			 else Mostrador.setText(Arbol.getPregunta());}
 		
 		if(e.getSource()==Salir){Arbol.Guardar();
