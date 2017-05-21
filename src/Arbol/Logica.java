@@ -123,17 +123,19 @@ public class Logica implements Serializable {
 	
 	private int Profundidad(Position<String> p) {
 		BTnode<String> n = (BTnode<String>) p;
+		boolean var=false;
 		try {
-			if (A.isRoot(n)) {
-				return 0;
-			}
-			else {
-				return 1+Profundidad(n.getParent());
-			}
+			var=A.isRoot(n);
 		} catch (InvalidPositionException e) {
 			System.out.println("Error: "+e.getMessage());
 		}
-		return 42;
+		
+		if (var) {
+			return 0;
+		}
+		else {
+			return 1+Profundidad(n.getParent());
+		}
 	}
 	
 	public int Altura() {
