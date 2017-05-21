@@ -109,6 +109,7 @@ public class Logica implements Serializable {
 	      }catch(IOException i) {
 	         i.printStackTrace();
 	      }}
+	// esto es nuevo
 	
 	
 	private static final Logger fLogger =
