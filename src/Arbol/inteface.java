@@ -325,7 +325,7 @@ public class inteface implements ActionListener{
 		 }
 		private void Actualizar(){
 			textField_2.setText("Cant. de Preg. Almacendas="+Arbol.cantPreguntas());
-			textField.setText("Tamaño del Arbol=");
+			textField.setText("Tamaño del Arbol="+Arbol.Altura());
 			textField_1.setText("Cant. de Obj. Almacenados="+Arbol.cantObjetos());
 		}
 	}
