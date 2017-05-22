@@ -77,7 +77,8 @@ public class ArbolitoBinario<E> implements ArbolBinario<E>,Serializable{
 		BTnode<E> nod = checkPosition(v);
 		BTnode<E> nuevonod = new BTnode<E>(r, null, null, null);
 		if (nod.getRigth()==null) {
-			nod.setRigth(nuevonod);}
+			nod.setRigth(nuevonod);
+			nuevonod.setParent(nod);}
 		else {
 			throw new InvalidOperationException("El nodo ya tiene hijo derecho.");}
 		size++;
@@ -169,6 +170,7 @@ public class ArbolitoBinario<E> implements ArbolBinario<E>,Serializable{
 		
 		if (nod.getLeft()==null) {
 			nod.setLeft(nuevonod);
+			nuevonod.setParent(nod);
 		}
 		else {
 			throw new InvalidOperationException("El nodo ya tiene hijo izquierdo.");

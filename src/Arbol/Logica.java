@@ -121,33 +121,25 @@ public class Logica implements Serializable {
 		return cantObjetos-1;
 	}
 	
-	private int Profundidad(Position<String> p) {
-		BTnode<String> n = (BTnode<String>) p;
-		boolean var=false;
-		try {
-			var=A.isRoot(n);
-		} catch (InvalidPositionException e) {
-			System.out.println("Error: "+e.getMessage());
-		}
-		
-		if (var) {
+	private int Profundidad(Position<String> p) throws InvalidPositionException{
+		if (A.isRoot(p)) {
 			return 0;
 		}
 		else {
+			BTnode<String> n = (BTnode<String>) p;
 			return 1+Profundidad(n.getParent());
-		}
+			}
 	}
-	
+
 	public int Altura() {
+		int h = 0;
 		try {
-			int h = 0;
-			for(Position<String> v : A.positions())
-			if(A.isExternal(v)) h = Math.max(h, Profundidad(v));
-			return h; 
-		} catch (EmptyTreeException | InvalidPositionException | BoundaryViolationException e) {
+			for(Position<String> v : A.positions())	
+				if(A.isExternal(v)) h = Math.max(h, Profundidad(v));
+		} catch(EmptyTreeException | BoundaryViolationException | InvalidPositionException e) {
 			System.out.println("Error: "+e.getMessage());
 		}
-		return 42;
+		return h; 
 	}
 	
 	private static final Logger fLogger =
