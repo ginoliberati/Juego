@@ -33,7 +33,7 @@ public class inteface implements ActionListener{
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField Mostrador;
-	private JButton BotonSi,BotonNO,BotonJugar,btnNewButton_1; 
+	private JButton BotonSi,BotonNO,BotonJugar;
 	private JFrame Ventani;
 	private JTextField Aparicion;
 	private JTextField Resp1;
@@ -43,6 +43,9 @@ public class inteface implements ActionListener{
 	private JButton Aceptar2;
 	private JButton ArbolA;
 	private JButton Salir;
+	private JButton MostrarNodos;
+	private JButton Descrip;
+	private MostrarArbol MA;
 	/**
 	 * Launch the application.
 	 */
@@ -133,36 +136,52 @@ public class inteface implements ActionListener{
 		ArbolA.setEnabled(false);
 		ArbolA.setVisible(false);
 		
+		MostrarNodos = new JButton("Mostrar todos Nodos");
+		MostrarNodos.setEnabled(false);
+		MostrarNodos.addActionListener(this);
+		
+		Descrip = new JButton("Descripcion Objetos\n");
+		Descrip.setEnabled(false);
+		Descrip.addActionListener(this);
+		
 		GroupLayout groupLayout = new GroupLayout(frmAdivinador.getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(217, Short.MAX_VALUE)
-					.addComponent(BotonJugar, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
-					.addGap(110)
-					.addComponent(Salir)
-					.addContainerGap())
+			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(textField, GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
-						.addComponent(textField_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
-						.addComponent(textField_2, GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE))
-					.addGap(395))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(92)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(Mostrador, GroupLayout.PREFERRED_SIZE, 408, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(6)
-							.addComponent(BotonSi, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(BotonNO, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE)))
-					.addGap(63))
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addComponent(textField_2, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+								.addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE))
+							.addGap(398))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(BotonJugar, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
+									.addGap(114)
+									.addComponent(Salir))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(textField, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+									.addGap(207)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(Descrip, GroupLayout.PREFERRED_SIZE, 177, GroupLayout.PREFERRED_SIZE)
+										.addComponent(MostrarNodos))
+									.addGap(17)))
+							.addGap(76))))
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(217, Short.MAX_VALUE)
+					.addGap(85)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(BotonSi, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(BotonNO, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE))
+						.addComponent(Mostrador, GroupLayout.PREFERRED_SIZE, 408, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(130, Short.MAX_VALUE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(213)
 					.addComponent(ArbolA)
-					.addGap(187))
+					.addContainerGap(251, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -171,20 +190,25 @@ public class inteface implements ActionListener{
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(Salir)
 						.addComponent(BotonJugar, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE))
-					.addGap(54)
+					.addGap(70)
 					.addComponent(Mostrador, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGap(29)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(BotonNO, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
-						.addComponent(BotonSi, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE))
-					.addGap(80)
+						.addComponent(BotonSi, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
+						.addComponent(BotonNO, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE))
+					.addGap(32)
 					.addComponent(ArbolA)
-					.addPreferredGap(ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
-					.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(MostrarNodos))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(Descrip))
 					.addGap(15))
 		);
 		frmAdivinador.getContentPane().setLayout(groupLayout);
@@ -281,6 +305,8 @@ public class inteface implements ActionListener{
 				ArbolA.setEnabled(true);
 				Salir.setEnabled(true);
 				Mostrador.setVisible(true);
+				MostrarNodos.setEnabled(true);
+				Descrip.setEnabled(true);
 				Actualizar();}
 		
 		 if(e.getSource()==BotonNO){
@@ -313,6 +339,7 @@ public class inteface implements ActionListener{
 				BotonNO.setVisible(false);
 				ArbolA.setVisible(false);
 				BotonJugar.setEnabled(true);
+				
 				Actualizar();
 				}
 			 else Mostrador.setText(Arbol.getPregunta());}
@@ -320,7 +347,11 @@ public class inteface implements ActionListener{
 		if(e.getSource()==Salir){Arbol.Guardar();
 								 System.exit(0);}
 		
-		
+		if(e.getSource()==MostrarNodos){
+			MA=new MostrarArbol();
+			MA.mostrar("2");
+			MA.setVisible(true);
+		}
 		
 		 }
 		private void Actualizar(){
