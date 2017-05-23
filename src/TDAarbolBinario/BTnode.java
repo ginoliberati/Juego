@@ -1,6 +1,6 @@
 package TDAarbolBinario;
-
-public class BTnode<E> implements Position<E> {
+import java.io.Serializable;
+public class BTnode<E> implements Position<E>,Serializable {
 	private E element;
 	private BTnode<E> left,rigth, parent;
 	

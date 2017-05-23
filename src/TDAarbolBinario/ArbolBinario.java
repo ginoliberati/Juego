@@ -1,6 +1,6 @@
 package TDAarbolBinario;
-
-public interface ArbolBinario<E> extends GTTree<E> 
+import  java.io.Serializable;
+public interface ArbolBinario<E> extends GTTree<E>,Serializable 
 {
 	
 	/*

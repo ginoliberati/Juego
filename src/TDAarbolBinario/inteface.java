@@ -1,5 +1,5 @@
 package TDAarbolBinario;
-
+import  TDAListaDoble.*;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -44,8 +44,9 @@ public class inteface implements ActionListener{
 	private JButton ArbolA;
 	private JButton Salir;
 	private JButton MostrarNodos;
-	private JButton Descrip;
 	private MostrarArbol MA;
+	private MostrarArbol DA;
+	private JButton oraciones;
 	/**
 	 * Launch the application.
 	 */
@@ -84,8 +85,9 @@ public class inteface implements ActionListener{
 		BotonJugar.addActionListener(this);
 		BotonJugar.setActionCommand("Jugar");
 		
-		Salir = new JButton("Salir");
+		Salir = new JButton("Guardar");
 		Salir.setEnabled(false);
+		Salir.addActionListener(this);
 		
 		textField = new JTextField();
 		textField.setFont(new Font("Lucida Sans Typewriter", Font.PLAIN, 9));
@@ -134,15 +136,16 @@ public class inteface implements ActionListener{
 		
 		ArbolA = new JButton("Arbol Almacenado");
 		ArbolA.setEnabled(false);
-		ArbolA.setVisible(false);
+		ArbolA.addActionListener(this);
 		
 		MostrarNodos = new JButton("Mostrar todos Nodos");
 		MostrarNodos.setEnabled(false);
 		MostrarNodos.addActionListener(this);
 		
-		Descrip = new JButton("Descripcion Objetos\n");
-		Descrip.setEnabled(false);
-		Descrip.addActionListener(this);
+		oraciones = new JButton("Oraciones");
+		oraciones.setEnabled(false);
+		oraciones.addActionListener(this);
+		oraciones.setVisible(false);
 		
 		GroupLayout groupLayout = new GroupLayout(frmAdivinador.getContentPane());
 		groupLayout.setHorizontalGroup(
@@ -162,11 +165,12 @@ public class inteface implements ActionListener{
 									.addGap(114)
 									.addComponent(Salir))
 								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(textField, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
-									.addGap(207)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(Descrip, GroupLayout.PREFERRED_SIZE, 177, GroupLayout.PREFERRED_SIZE)
-										.addComponent(MostrarNodos))
+									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+										.addComponent(oraciones, GroupLayout.PREFERRED_SIZE, 166, GroupLayout.PREFERRED_SIZE)
+										.addGroup(groupLayout.createSequentialGroup()
+											.addComponent(textField, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+											.addGap(207)
+											.addComponent(MostrarNodos)))
 									.addGap(17)))
 							.addGap(76))))
 				.addGroup(groupLayout.createSequentialGroup()
@@ -202,13 +206,15 @@ public class inteface implements ActionListener{
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(MostrarNodos))
-					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addComponent(Descrip))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(17)
+							.addComponent(oraciones)))
 					.addGap(15))
 		);
 		frmAdivinador.getContentPane().setLayout(groupLayout);
@@ -306,7 +312,8 @@ public class inteface implements ActionListener{
 				Salir.setEnabled(true);
 				Mostrador.setVisible(true);
 				MostrarNodos.setEnabled(true);
-				Descrip.setEnabled(true);
+				oraciones.setEnabled(true);
+				oraciones.setVisible(true);
 				Actualizar();}
 		
 		 if(e.getSource()==BotonNO){
@@ -344,20 +351,45 @@ public class inteface implements ActionListener{
 				}
 			 else Mostrador.setText(Arbol.getPregunta());}
 		
-		if(e.getSource()==Salir){Arbol.Guardar();
-								 System.exit(0);}
-		
+		if(e.getSource()==Salir){System.out.println(" hola");
+									Arbol.Guardar();
+								 }
+		if(e.getSource()==oraciones){
+			DA=new MostrarArbol();
+			DA.setVisible(true);
+			String ant="";
+			PositionList<String> lista= new ListaDoble<String>();
+			System.out.println("Este se apreto");
+		/*try{*/	// Arbol.getInformacion(lista);
+				/*Position<String> po=lista.first();
+				while((po!=lista.last())){
+					ant=ant+po.element();
+					po=lista.next(po);
+			}
+				ant=ant+po.element();
+				po=lista.next(po);
+				DA.mostrar(ant);
+		}
+	
+	catch(EmptyListException | InvalidPositionException |BoundaryViolationException h){System.out.println(h.getMessage());}*/
+		}
 		if(e.getSource()==MostrarNodos){
 			MA=new MostrarArbol();
 			MA.mostrar("2");
 			MA.setVisible(true);
+			
 		}
+		if(e.getSource()==ArbolA){Arbol.recuperar();
+								 Arbol.reset();
+								 Mostrador.setText(Arbol.getPregunta());}
+			
 		
-		 }
+		
+	}
+	
 		private void Actualizar(){
 			textField_2.setText("Cant. de Preg. Almacendas="+Arbol.cantPreguntas());
 			textField.setText("Tamaño del Arbol="+Arbol.Altura());
-			textField_1.setText("Cant. de Obj. Almacenados="+Arbol.cantObjetos());
-		}
+			textField_1.setText("Cant. de Obj. Almacenados="+Arbol.cantObjetos());}
 	}
 

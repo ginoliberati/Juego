@@ -14,11 +14,11 @@ import java.awt.GridBagConstraints;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
-public class MostrarArbol extends JDialog {
+public class MostrarArbol extends JDialog{
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textField;
-
+	
 	/**
 	 * Launch the application.
 	 */
@@ -61,6 +61,8 @@ public class MostrarArbol extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
+				OyenteBoton oyenteBoton = new OyenteBoton();
+				okButton.addActionListener(oyenteBoton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
@@ -73,7 +75,20 @@ public class MostrarArbol extends JDialog {
 		public void mostrar(String h){
 			textField.setText(h);}
 		
-		
+		public String texto(){ return textField.getText();}
+	
 
-
+		public class OyenteBoton implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+			
+				// Crea un nuevo frame y lo vuelve visible
+				/*
+				 * JFrame frame2 = new JFrame();
+				 * frame2.setSize(300, 300);
+				 * frame2.setVisible(true);
+				 */
+				
+				// Crea una nueva ventana (JDialog) y la vuelve visible
+				}
+		}
 }

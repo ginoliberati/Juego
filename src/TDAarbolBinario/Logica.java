@@ -5,7 +5,7 @@ import java.util.logging.*;
 
 import TDAListaDoble.*;
 public class Logica implements Serializable {
-	private ArbolBinario<String> A;
+	private ArbolitoBinario<String> A;
 	private Position<String> cursor;
 	private boolean gano;
 	private PositionList<Position<String>> listaD;
@@ -102,17 +102,19 @@ public class Logica implements Serializable {
 		}
 	}
 	public void Guardar(){
-		try {
-	         FileOutputStream fileOut =
-	         new FileOutputStream("/Users/GINO/Desktop/universidad/Arbol.ser");
-	         ObjectOutputStream out = new ObjectOutputStream(fileOut);
-	         out.writeObject(A);
-	         out.close();
-	         fileOut.close();
-	         System.out.printf("Serialized data is saved in /Users/GINO/Desktop/universidad/Arbol.ser");
-	      }catch(IOException i) {
-	         i.printStackTrace();
-	      }}
+		try (
+			      OutputStream file = new FileOutputStream("/Users/GINO/Desktop/hola.ser");
+			      OutputStream buffer = new BufferedOutputStream(file);
+			      ObjectOutput output = new ObjectOutputStream(buffer);
+			    ){
+			     output.writeObject(A);
+			     System.out.println("hola");
+			    }  
+			    catch(IOException ex){
+			      fLogger.log(Level.SEVERE, "Cannot perform output.", ex);
+			    }
+	}
+
 	// esto es nuevo
 	public int cantObjetos() {
 		return cantObjetos;
@@ -137,12 +139,88 @@ public class Logica implements Serializable {
 		try {
 			for(Position<String> v : A.positions())	
 				if(A.isExternal(v)) h = Math.max(h, Profundidad(v));
-		} catch(EmptyTreeException | BoundaryViolationException | InvalidPositionException e) {
+		} catch( InvalidPositionException e) {
 			System.out.println("Error: "+e.getMessage());
 		}
 		return h; 
 	}
+	public void recuperar(){
+		ArbolitoBinario<String > recuperado;
+		try(
+			      InputStream file = new FileInputStream("/Users/GINO/Desktop/hola.ser");
+			      InputStream buffer = new BufferedInputStream(file);
+			      ObjectInput input = new ObjectInputStream (buffer);
+			    ){
+			      //deserialize the List
+			 recuperado = (ArbolitoBinario<String >)input.readObject();
+			      //display its data
+			      for(String quark: recuperado){
+			        System.out.println("Recovered Quark: " + quark);
+			      }
+			    }
+			    catch(ClassNotFoundException ex){
+			      fLogger.log(Level.SEVERE, "Cannot perform input. Class not found.", ex);
+			      recuperado=null;
+			    }
+			    catch(IOException ex){
+			      fLogger.log(Level.SEVERE, "Cannot perform input.", ex);
+			      recuperado=null;
+			    }
+		A=recuperado;
+		
+	}
 	
 	private static final Logger fLogger =
 		    Logger.getLogger(Logica.class.getPackage().getName());
+
+	private String informacion(Position<String> p) throws InvalidPositionException{
+		String elemento= p.element()+"  un instrumento de ";
+		try {
+			Position<String> padre;
+			while(!A.isRoot(p)){
+				padre = A.parent(p);
+				if(A.left(padre)==p){
+					if(A.isRoot(padre)){
+						elemento+=" y es "+padre.element();
+					}
+					else {
+						elemento+=", es "+padre.element();	
+					}
+				}
+				else {
+					if(A.isRoot(padre)){
+						elemento+=" y no es"+padre.element();
+					}
+					else {
+						elemento+=", no es "+padre.element();
+					}
+				}
+			}
+		}
+		catch (BoundaryViolationException e) {
+			e.printStackTrace();
+		}
+		return elemento;
+	}
+
+	private void preOrdenInfo (Position<String> pos, PositionList<String> lista) {
+	try{	if (A.isExternal(pos)) {
+			lista.addLast(informacion(pos));
+		}
+		if (A.hasLeft(pos)) {
+			preOrdenInfo(A.left(pos), lista);
+		}
+		if (A.hasRight(pos)) {
+			preOrdenInfo(A.right(pos), lista);
+		}}
+		catch(BoundaryViolationException | InvalidPositionException e){System.out.println(e.getMessage());}
+		
+	}
+
+	public void getInformacion (PositionList<String> lista) {
+	try{	preOrdenInfo(A.root(), lista);}
+		catch(EmptyTreeException e){System.out.println(e.getMessage());}
+	}
+
+    public 
 }
