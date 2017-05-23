@@ -1,4 +1,4 @@
-package ListaDoble;
+package TDAListaDoble;
 import java.lang.Exception;
 
 public class EmptyListException extends Exception {

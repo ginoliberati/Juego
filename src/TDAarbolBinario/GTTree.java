@@ -1,4 +1,4 @@
-package Arbol;
+package TDAarbolBinario;
 import java.lang.Iterable;
 import java.util.Iterator;
 public interface GTTree<E> extends Iterable<E> 

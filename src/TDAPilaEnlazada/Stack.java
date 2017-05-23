@@ -1,4 +1,4 @@
-package PilaEnlaza;
+package TDAPilaEnlazada;
 
 public interface Stack<T> {
 	public void push(T t);

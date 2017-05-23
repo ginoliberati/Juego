@@ -1,4 +1,4 @@
-package Arbol;
+package TDAarbolBinario;
 
 import java.awt.EventQueue;
 

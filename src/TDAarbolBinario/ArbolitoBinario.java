@@ -1,10 +1,10 @@
-package Arbol;
-import ListaDoble.*;
-
+package TDAarbolBinario;
 import java.io.Serializable;
 import java.util.Iterator;
 import java.util.*;
 import java.util.logging.*;
+
+import TDAListaDoble.*;
 public class ArbolitoBinario<E> implements ArbolBinario<E>,Serializable{
 	protected BTnode<E> root;
 	protected int size;

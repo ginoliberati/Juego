@@ -1,4 +1,4 @@
-package PilaEnlaza;
+package TDAPilaEnlazada;
 
 public class PilaConEnlaces<T> implements Stack<T> {
 	

@@ -1,4 +1,4 @@
-package Arbol;
+package TDAarbolBinario;
 
 public class BTnode<E> implements Position<E> {
 	private E element;

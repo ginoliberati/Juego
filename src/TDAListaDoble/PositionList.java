@@ -1,8 +1,8 @@
-package ListaDoble;
+package TDAListaDoble;
 
-import Arbol.BoundaryViolationException;
-import Arbol.InvalidPositionException;
-import Arbol.Position;
+import TDAarbolBinario.BoundaryViolationException;
+import TDAarbolBinario.InvalidPositionException;
+import TDAarbolBinario.Position;
 
 public interface PositionList<E> extends Iterable<E> {
 	public int size();

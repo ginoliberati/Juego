@@ -1,4 +1,4 @@
-package Arbol;
+package TDAarbolBinario;
 import java.lang.Exception;
 
 public class InvalidPositionException extends Exception {

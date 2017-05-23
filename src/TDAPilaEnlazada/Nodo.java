@@ -1,4 +1,4 @@
-package PilaEnlaza;
+package TDAPilaEnlazada;
 public class Nodo<T> {
 	
 	private T elem;

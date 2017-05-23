@@ -1,8 +1,9 @@
-package Arbol;
+package TDAarbolBinario;
 import java.io.*;
 import java.util.*;
 import java.util.logging.*;
-import ListaDoble.*;
+
+import TDAListaDoble.*;
 public class Logica implements Serializable {
 	private ArbolBinario<String> A;
 	private Position<String> cursor;

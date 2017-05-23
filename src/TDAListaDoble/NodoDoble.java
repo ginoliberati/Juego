@@ -1,6 +1,6 @@
-package ListaDoble;
+package TDAListaDoble;
 
-import Arbol.Position;
+import TDAarbolBinario.Position;
 
 public class NodoDoble<E> implements Position<E> {
 	E elem;

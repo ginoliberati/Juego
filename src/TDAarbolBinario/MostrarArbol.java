@@ -1,8 +1,9 @@
-package Arbol;
+package TDAarbolBinario;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -61,7 +62,6 @@ public class MostrarArbol extends JDialog {
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
-				
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");

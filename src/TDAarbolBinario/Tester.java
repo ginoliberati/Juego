@@ -1,4 +1,4 @@
-package Arbol;
+package TDAarbolBinario;
 import java.util.Scanner;
 
 public class Tester {

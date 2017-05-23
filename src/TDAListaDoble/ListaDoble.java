@@ -1,9 +1,9 @@
-package ListaDoble;
+package TDAListaDoble;
 import java.util.Iterator;
 
-import Arbol.BoundaryViolationException;
-import Arbol.InvalidPositionException;
-import Arbol.Position;
+import TDAarbolBinario.BoundaryViolationException;
+import TDAarbolBinario.InvalidPositionException;
+import TDAarbolBinario.Position;
 public class ListaDoble<E> implements PositionList<E> {
 	NodoDoble<E> header;
 	NodoDoble<E> trailer;

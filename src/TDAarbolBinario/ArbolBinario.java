@@ -1,4 +1,4 @@
-package Arbol;
+package TDAarbolBinario;
 
 public interface ArbolBinario<E> extends GTTree<E> 
 {
