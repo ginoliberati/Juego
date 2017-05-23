@@ -2,7 +2,8 @@ package TDAarbolBinario;
 import java.io.*;
 import java.util.*;
 import java.util.logging.*;
-
+import java.util.Iterator;
+import java.util.*;
 import TDAListaDoble.*;
 public class Logica implements Serializable {
 	private ArbolitoBinario<String> A;
@@ -222,5 +223,5 @@ public class Logica implements Serializable {
 		catch(EmptyTreeException e){System.out.println(e.getMessage());}
 	}
 
-    public 
+	
 }
