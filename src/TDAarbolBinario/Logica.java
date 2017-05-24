@@ -25,7 +25,7 @@ public class Logica implements Serializable {
 	 
 	/* *Genera una pregunta dado el contenido de la posicion cursor*/
 	public String getPregunta() {
-		return "Es "+cursor.element()+"?";
+		return "¿"+cursor.element()+"?";
 	}
 	
 	public String getElement() {
@@ -153,7 +153,7 @@ public class Logica implements Serializable {
 			      ObjectInput input = new ObjectInputStream (buffer);
 			    ){
 			      //deserialize the List
-			 recuperado = (ArbolitoBinario<String >)input.readObject();
+			 recuperado = (ArbolitoBinario<String>)input.readObject();
 			      //display its data
 			      for(String quark: recuperado){
 			        System.out.println("Recovered Quark: " + quark);
@@ -175,28 +175,34 @@ public class Logica implements Serializable {
 		    Logger.getLogger(Logica.class.getPackage().getName());
 
 	private String informacion(Position<String> p) throws InvalidPositionException{
-		String elemento= p.element()+"  un instrumento de ";
+		String elemento= p.element();
 		try {
 			Position<String> padre;
 			while(!A.isRoot(p)){
 				padre = A.parent(p);
 				if(A.left(padre)==p){
 					if(A.isRoot(padre)){
-						elemento+=" y es "+padre.element();
+						elemento+=" no "+padre.element();
+						
 					}
 					else {
-						elemento+=", es "+padre.element();	
+						elemento+="y no "+padre.element();	
+						
 					}
 				}
-				else {
+				else if(A.right(padre)==p) {
 					if(A.isRoot(padre)){
-						elemento+=" y no es"+padre.element();
+						elemento+="  "+padre.element();
+						
 					}
 					else {
-						elemento+=", no es "+padre.element();
+						elemento+="y   "+padre.element();
+						
 					}
 				}
+				p=padre;
 			}
+			
 		}
 		catch (BoundaryViolationException e) {
 			e.printStackTrace();
@@ -206,22 +212,31 @@ public class Logica implements Serializable {
 
 	private void preOrdenInfo (Position<String> pos, PositionList<String> lista) {
 	try{	if (A.isExternal(pos)) {
-			lista.addLast(informacion(pos));
-		}
-		if (A.hasLeft(pos)) {
-			preOrdenInfo(A.left(pos), lista);
-		}
-		if (A.hasRight(pos)) {
+			System.out.println("llegue a la hoja");
+			lista.addLast(informacion(pos));}
+			
+		if (A.hasRight(pos) ) {
+			System.out.println("padre");
 			preOrdenInfo(A.right(pos), lista);
-		}}
-		catch(BoundaryViolationException | InvalidPositionException e){System.out.println(e.getMessage());}
+			
+		}
+		if (A.hasLeft(pos) ) {
+			System.out.println("madre");
+			preOrdenInfo(A.left(pos), lista);}
+		}
+		
+	catch(BoundaryViolationException | InvalidPositionException e){System.out.println(e.getMessage());}
 		
 	}
 
-	public void getInformacion (PositionList<String> lista) {
-	try{	preOrdenInfo(A.root(), lista);}
+	public void getInformacion (PositionList<String> lista)throws InvalidPositionException {
+	try{	
+			
+			preOrdenInfo(A.root(), lista);
+			}
 		catch(EmptyTreeException e){System.out.println(e.getMessage());}
 	}
-
 	
+			
 }
+	

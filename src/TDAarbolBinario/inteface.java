@@ -355,24 +355,28 @@ public class inteface implements ActionListener{
 									Arbol.Guardar();
 								 }
 		if(e.getSource()==oraciones){
-			DA=new MostrarArbol();
-			DA.setVisible(true);
 			String ant="";
 			PositionList<String> lista= new ListaDoble<String>();
 			System.out.println("Este se apreto");
-		/*try{*/	// Arbol.getInformacion(lista);
-				/*Position<String> po=lista.first();
+		try {	 Arbol.getInformacion(lista);
+				Position<String> po=lista.first();
 				while((po!=lista.last())){
-					ant=ant+po.element();
+					ant+=" \n "+po.element();
 					po=lista.next(po);
-			}
-				ant=ant+po.element();
-				po=lista.next(po);
+					
+				}
+				ant+=" \n "+po.element();
+				
+				System.out.println(ant);
+				DA=new MostrarArbol();
 				DA.mostrar(ant);
-		}
+				DA.setVisible(true);}
+				
+		
 	
-	catch(EmptyListException | InvalidPositionException |BoundaryViolationException h){System.out.println(h.getMessage());}*/
+	catch(EmptyListException | InvalidPositionException |BoundaryViolationException h){System.out.println(h.getMessage());}
 		}
+		
 		if(e.getSource()==MostrarNodos){
 			MA=new MostrarArbol();
 			MA.mostrar("2");

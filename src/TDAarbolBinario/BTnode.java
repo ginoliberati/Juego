@@ -3,7 +3,7 @@ import java.io.Serializable;
 public class BTnode<E> implements Position<E>,Serializable {
 	private E element;
 	private BTnode<E> left,rigth, parent;
-	
+	private boolean revisado=false;
 	public BTnode(E element, BTnode<E> parent, BTnode<E> left, BTnode<E> rigth){
 		setElement(element);
 		setParent(parent);
@@ -18,4 +18,5 @@ public class BTnode<E> implements Position<E>,Serializable {
 	public void setRigth(BTnode<E> a){rigth=a;}
 	public BTnode<E> getParent(){return parent;}
 	public void setParent(BTnode<E> a){parent=a;}
+	
 }
