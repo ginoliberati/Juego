@@ -263,5 +263,47 @@ public class Logica implements Serializable {
 								lista.remove(lista.first());}
 		return pila;
 	}
+	
+	private Position<String> buscar(String nombre) {
+		Position<String> v=null;
+		for (Position<String> e:A.positions()) {
+			if (e.element()==nombre) {
+				v=e;
+			}
+		}
+		return v;
+	}
+	
+	public void eliminarSubarbol(String nombre) {
+		Position<String> pos=buscar(nombre);
+		eliminar(pos);
+	}
+	
+	private void eliminar(Position<String> pos) {
+		try {
+			if (!A.isExternal(pos)){
+				if (A.hasLeft(pos)) {
+					if (A.isExternal(A.left(pos))) {
+						A.replace(pos, A.left(pos).element());
+						A.remove(A.left(pos));
+					} else {
+						eliminar(A.left(pos));
+						eliminar(pos);
+					}
+				}
+				if (A.hasRight(pos)) {
+					if (A.isExternal(A.right(pos))) {
+						A.replace(pos, A.right(pos).element());
+						A.remove(A.right(pos));
+					} else {
+						eliminar(A.left(pos));
+						eliminar(pos);
+					}
+				}
+			}
+		} catch (InvalidPositionException | InvalidOperationException | BoundaryViolationException e) {
+			System.out.println("Error: "+e.getMessage());
+		}
+	}
 }
 	
