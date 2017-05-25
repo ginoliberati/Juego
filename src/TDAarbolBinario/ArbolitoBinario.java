@@ -203,7 +203,7 @@ public class ArbolitoBinario<E> implements ArbolBinario<E>,Serializable{
 	public boolean isInternal(Position<E> v) throws InvalidPositionException {
 		BTnode<E> nod = checkPosition(v);
 		
-		return nod.getLeft()!=null || nod.getRigth()!=null;
+		return (nod.getLeft()!=null || nod.getRigth()!=null);
 	}
 	
 	/*Reemplaza el elemento del nodo v por e, retorna el anterior elemento*/
@@ -233,7 +233,7 @@ public class ArbolitoBinario<E> implements ArbolBinario<E>,Serializable{
 		catch (EmptyTreeException e) {
 			throw new InvalidPositionException("El arbol pasado por parametro esta vacio.");
 		}
-	
+		
 		}
 	
 	/*

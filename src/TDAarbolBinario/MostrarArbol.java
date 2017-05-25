@@ -13,11 +13,11 @@ import javax.swing.JTextField;
 import java.awt.GridBagConstraints;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JTextPane;
 
 public class MostrarArbol extends JDialog{
-
+	private JTextPane Mostrador;
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
 	
 	/**
 	 * Launch the application.
@@ -41,16 +41,15 @@ public class MostrarArbol extends JDialog{
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
+		 Mostrador = new JTextPane();
 		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
 		gl_contentPanel.setHorizontalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.LEADING)
-				.addComponent(textField, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+				.addComponent(Mostrador, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
 		);
 		gl_contentPanel.setVerticalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.LEADING)
-				.addComponent(textField, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+				.addComponent(Mostrador, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
 		);
 		contentPanel.setLayout(gl_contentPanel);
 		{
@@ -73,22 +72,12 @@ public class MostrarArbol extends JDialog{
 		}
 	}
 		public void mostrar(String h){
-			textField.setText(h);}
+			Mostrador.setText(Mostrador.getText()+" \n "+h);}
 		
-		public String texto(){ return textField.getText();}
+		public String texto(){ return Mostrador.getText();}
 	
 
 		public class OyenteBoton implements ActionListener {
-			public void actionPerformed(ActionEvent e) {
-			
-				// Crea un nuevo frame y lo vuelve visible
-				/*
-				 * JFrame frame2 = new JFrame();
-				 * frame2.setSize(300, 300);
-				 * frame2.setVisible(true);
-				 */
-				
-				// Crea una nueva ventana (JDialog) y la vuelve visible
-				}
-		}
+			public void actionPerformed(ActionEvent e) {}
+}
 }

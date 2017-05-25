@@ -1,10 +1,11 @@
 package TDAarbolBinario;
 import java.io.*;
 import java.util.*;
+import java.util.Stack;
 import java.util.logging.*;
-import java.util.Iterator;
 import java.util.*;
 import TDAListaDoble.*;
+import TDAPilaEnlazada.*;
 public class Logica implements Serializable {
 	private ArbolitoBinario<String> A;
 	private Position<String> cursor;
@@ -182,21 +183,21 @@ public class Logica implements Serializable {
 				padre = A.parent(p);
 				if(A.left(padre)==p){
 					if(A.isRoot(padre)){
-						elemento+=" no "+padre.element();
+						elemento+=" y no "+padre.element();
 						
 					}
 					else {
-						elemento+="y no "+padre.element();	
+						elemento+=" no "+padre.element();	
 						
 					}
 				}
 				else if(A.right(padre)==p) {
 					if(A.isRoot(padre)){
-						elemento+="  "+padre.element();
+						elemento+=" y "+padre.element();
 						
 					}
 					else {
-						elemento+="y   "+padre.element();
+						elemento+=" "+padre.element();
 						
 					}
 				}
@@ -211,25 +212,23 @@ public class Logica implements Serializable {
 	}
 
 	private void preOrdenInfo (Position<String> pos, PositionList<String> lista) {
-	try{	if (A.isExternal(pos)) {
-			System.out.println("llegue a la hoja");
-			lista.addLast(informacion(pos));}
+		try{	if (A.isExternal(pos)) {
+				lista.addLast(informacion(pos));}
+	
+			if (A.hasRight(pos) ) {
+				preOrdenInfo(A.right(pos), lista);
 			
-		if (A.hasRight(pos) ) {
-			System.out.println("padre");
-			preOrdenInfo(A.right(pos), lista);
-			
-		}
-		if (A.hasLeft(pos) ) {
-			System.out.println("madre");
-			preOrdenInfo(A.left(pos), lista);}
-		}
+			}
+			if (A.hasLeft(pos) ) {
+				preOrdenInfo(A.left(pos), lista);}
+			}
 		
-	catch(BoundaryViolationException | InvalidPositionException e){System.out.println(e.getMessage());}
+		catch(BoundaryViolationException | InvalidPositionException e){System.out.println(e.getMessage());}
 		
 	}
 
-	public void getInformacion (PositionList<String> lista)throws InvalidPositionException {
+	public void getInformacion (PositionList<String> lista)
+			throws InvalidPositionException {
 	try{	
 			
 			preOrdenInfo(A.root(), lista);
@@ -237,6 +236,32 @@ public class Logica implements Serializable {
 		catch(EmptyTreeException e){System.out.println(e.getMessage());}
 	}
 	
+	private void NodosInternos(Position<String> pos, PositionList<String> lista) {
+		try{	if (A.isExternal(pos)) {}
+	
+			if (A.hasRight(pos) ) {
+				NodosInternos(A.right(pos), lista);
+				if(!A.isExternal(pos)){System.out.println("pene");
+				lista.addLast(pos.element());}
+				
+			}
+			if (A.hasLeft(pos) ) {
+				NodosInternos(A.left(pos), lista);
+				
+			}
+		}
+		catch(BoundaryViolationException | InvalidPositionException e){System.out.println(e.getMessage());}
+		
+	}
 			
+	public TDAPilaEnlazada.Stack<String> MostrarNodos()
+				throws InvalidPositionException, EmptyListException, EmptyTreeException {
+		TDAPilaEnlazada.Stack<String> pila=new PilaConEnlaces<String>();
+		PositionList<String> lista=new ListaDoble<String>();
+		NodosInternos(A.root(),lista);
+		while(!lista.isEmpty()){pila.push(lista.first().element());
+								lista.remove(lista.first());}
+		return pila;
+	}
 }
 	

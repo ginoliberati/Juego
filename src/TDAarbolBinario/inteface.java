@@ -1,7 +1,7 @@
 package TDAarbolBinario;
 import  TDAListaDoble.*;
+import TDAPilaEnlazada.*;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
@@ -135,11 +135,13 @@ public class inteface implements ActionListener{
 		BotonNO.setVisible(false);
 		
 		ArbolA = new JButton("Arbol Almacenado");
-		ArbolA.setEnabled(false);
+		ArbolA.setEnabled(false);;
 		ArbolA.addActionListener(this);
+		ArbolA.setVisible(false);
 		
 		MostrarNodos = new JButton("Mostrar todos Nodos");
 		MostrarNodos.setEnabled(false);
+		MostrarNodos.setVisible(false);
 		MostrarNodos.addActionListener(this);
 		
 		oraciones = new JButton("Oraciones");
@@ -290,7 +292,7 @@ public class inteface implements ActionListener{
 	}
 	public void actionPerformed(ActionEvent e){
 		String evento=e.getActionCommand();
-		if(e.getSource()==BotonJugar){
+	if(e.getSource()==BotonJugar){
 			 Arbol=new Logica(); 
 			 textField.setEnabled(true);
 			 textField.setVisible(true);
@@ -312,17 +314,18 @@ public class inteface implements ActionListener{
 				Salir.setEnabled(true);
 				Mostrador.setVisible(true);
 				MostrarNodos.setEnabled(true);
+				MostrarNodos.setVisible(true);
 				oraciones.setEnabled(true);
 				oraciones.setVisible(true);
 				Actualizar();}
 		
-		 if(e.getSource()==BotonNO){
+	if(e.getSource()==BotonNO){
 			if(!Arbol.Perdio()){Arbol.No();Mostrador.setText(Arbol.getPregunta());}
 			else{Resp2.setText("¿Qué diferencia tiene con "+Arbol.getElement()+"?"); 
 				 Ventani.setVisible(true);}
 			}
 		
-		 if(e.getSource()==Aceptar2){
+	 if(e.getSource()==Aceptar2){
 			resp2=Aparicion2.getText(); 
 			resp1=Resp1.getText();
 			Ventani.dispose();
@@ -334,7 +337,7 @@ public class inteface implements ActionListener{
 			Actualizar();
 			}
 			
-		if(e.getSource()==BotonSi){
+	if(e.getSource()==BotonSi){
 			Arbol.Si();
 			if(Arbol.Gano()){Mostrador.setText("Siempre Adivino :-)");
 				textField.setVisible(true);
@@ -354,42 +357,42 @@ public class inteface implements ActionListener{
 		if(e.getSource()==Salir){System.out.println(" hola");
 									Arbol.Guardar();
 								 }
-		if(e.getSource()==oraciones){
-			String ant="";
+	if(e.getSource()==oraciones){
+			DA=new MostrarArbol();
 			PositionList<String> lista= new ListaDoble<String>();
-			System.out.println("Este se apreto");
-		try {	 Arbol.getInformacion(lista);
+			try {	 Arbol.getInformacion(lista);
 				Position<String> po=lista.first();
 				while((po!=lista.last())){
-					ant+=" \n "+po.element();
+					DA.mostrar(po.element());
 					po=lista.next(po);
-					
-				}
-				ant+=" \n "+po.element();
-				
-				System.out.println(ant);
-				DA=new MostrarArbol();
-				DA.mostrar(ant);
+					}
+					DA.mostrar(po.element());
 				DA.setVisible(true);}
 				
 		
 	
-	catch(EmptyListException | InvalidPositionException |BoundaryViolationException h){System.out.println(h.getMessage());}
+		catch(EmptyListException | InvalidPositionException |BoundaryViolationException h){System.out.println(h.getMessage());}
 		}
 		
-		if(e.getSource()==MostrarNodos){
+	if(e.getSource()==MostrarNodos){
 			MA=new MostrarArbol();
-			MA.mostrar("2");
-			MA.setVisible(true);
-			
+			TDAPilaEnlazada.Stack<String> pila= new PilaConEnlaces<String>();
+			try{pila=Arbol.MostrarNodos();
+				while(!pila.isEmpty()){
+				MA.mostrar(pila.pop());
+				
+				}
+				MA.setVisible(true);}
+		catch(InvalidPositionException| EmptyListException | EmptyStackException |EmptyTreeException k)
+			{System.out.println(k.getMessage());}
 		}
-		if(e.getSource()==ArbolA){Arbol.recuperar();
+		
+		
+	if(e.getSource()==ArbolA){Arbol.recuperar();
 								 Arbol.reset();
-								 Mostrador.setText(Arbol.getPregunta());}
-			
-		
-		
-	}
+								 Mostrador.setText(Arbol.getPregunta());
+								 Actualizar();}
+		}
 	
 		private void Actualizar(){
 			textField_2.setText("Cant. de Preg. Almacendas="+Arbol.cantPreguntas());
