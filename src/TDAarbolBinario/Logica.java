@@ -271,7 +271,12 @@ public class Logica implements Serializable {
 	
 			if (A.hasRight(pos) ) {
 				NodosInternos(A.right(pos), lista);
+<<<<<<< Updated upstream
 				if(!A.isExternal(pos)){lista.addLast(pos.element());}
+=======
+				if(!A.isExternal(pos)){
+				lista.addLast(pos.element());}
+>>>>>>> Stashed changes
 				
 			}
 			if (A.hasLeft(pos) ) {
@@ -292,6 +297,11 @@ public class Logica implements Serializable {
 								lista.remove(lista.first());}
 		return pila;
 	}
+	public PositionList<String> Internos() throws EmptyTreeException{
+		PositionList<String> lista=new ListaDoble<String>();
+		NodosInternos(A.root(),lista);
+		return lista;
+		}
 	
 	private Position<String> buscar(String nombre) {
 		Position<String> v=null;
@@ -338,5 +348,6 @@ public class Logica implements Serializable {
 			System.out.println("Error: "+e.getMessage());
 		}
 	}
+	
 }
 	

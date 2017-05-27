@@ -2,6 +2,8 @@ package TDAarbolBinario;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -17,7 +19,8 @@ public class Borrar extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtquDeseaNodo;
-
+	public static String leyo;
+	private JComboBox Combo;
 	/**
 	 * Launch the application.
 	 */
@@ -40,7 +43,7 @@ public class Borrar extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		
-		JComboBox Combo = new JComboBox();
+		 Combo = new JComboBox();
 		
 		txtquDeseaNodo = new JTextField();
 		txtquDeseaNodo.setText("¿Qué nodo desea eliminar?");
@@ -74,6 +77,8 @@ public class Borrar extends JDialog {
 			{
 				JButton okButton = new JButton("OK");
 				okButton.setActionCommand("OK");
+				OyenteBoton c=new OyenteBoton();
+				okButton.addActionListener(c);
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
@@ -84,4 +89,13 @@ public class Borrar extends JDialog {
 			}
 		}
 	}
+	public void mostrar(String h){
+		Combo.addItem(h);}
+	public String leyo(){return leyo;}
+	public class OyenteBoton implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			leyo=txtquDeseaNodo.getSelectedText();
+			dispose();
+		}
+		}
 }
