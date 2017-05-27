@@ -5,8 +5,6 @@ public class PilaConEnlaces<T> implements Stack<T> {
 	private int size;
 	private Nodo<T> head;
 	
-	/**Crea una nueva pila vacia
-	 */
 	public PilaConEnlaces() {
 		size=0;
 		head=null;
