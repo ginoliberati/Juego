@@ -337,7 +337,7 @@ public class Logica implements Serializable {
 						A.remove(A.right(pos));
 						cantObjetos--;
 					} else {
-						eliminar(A.left(pos));
+						eliminar(A.right(pos));
 						eliminar(pos);
 					}
 				}
