@@ -236,10 +236,4 @@ public class ArbolitoBinario<E> implements ArbolBinario<E>,Serializable{
 		
 		}
 	
-	/*
-	7)createRoot();
-	8)addrigth():
-
-	*/
-	
 }

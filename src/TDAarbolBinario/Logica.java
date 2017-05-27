@@ -12,7 +12,8 @@ public class Logica implements Serializable {
 	private boolean gano;
 	private PositionList<Position<String>> listaD;
 	private int cantObjetos;
-	/* *Crea un arbol binario A con raiz "una guitarra", y la asigna a 
+	/**
+	 * Crea un arbol binario A con raiz "una guitarra", y la asigna a 
 	 * la posicion cursor*/
 	public Logica() {
 		try {
@@ -24,16 +25,22 @@ public class Logica implements Serializable {
 			System.out.println("Error: "+e.getMessage());}
 		}
 	 
-	/* *Genera una pregunta dado el contenido de la posicion cursor*/
+	/**
+	 * Genera una pregunta dado el contenido de la posicion cursor
+	 * @return pregunta - String*/
 	public String getPregunta() {
 		return "\u00bf"+cursor.element()+"?";
 	}
 	
+	/**
+	 * Devuelve el rotulo de la posicion cursor
+	 * @return rotulo - String*/
 	public String getElement() {
 		return cursor.element();
 	}
 	
-	/* *Mueve la posicion cursor hacia su hijo derecho.
+	/**
+	 * Mueve la posicion cursor hacia su hijo derecho.
 	 * Se llama si el usuario responde "Si" en el juego.*/
 	public void Si() {
 		try {
@@ -48,7 +55,8 @@ public class Logica implements Serializable {
 		}
 	}
 	
-	/* *Mueve la posicion cursor hacia su hijo izquierdo.
+	/**
+	 * Mueve la posicion cursor hacia su hijo izquierdo.
 	 * Se llama si el usuario responde "No" en el juego*/
 	public void No() {
 		try {
@@ -60,7 +68,8 @@ public class Logica implements Serializable {
 		}
 	}
 	
-	/* *Agrega el nodo con rotulo elem como hijo derecho de cursor, y el nodo
+	/**
+	 * Agrega el nodo con rotulo elem como hijo derecho de cursor, y el nodo
 	 * con el elemento de cursor como su hijo izquierdo. Reemplaza el elemento de 
 	 * cursor por diferencia
 	 * @param elem - String
@@ -76,13 +85,16 @@ public class Logica implements Serializable {
 		}
 	}
 	
-	/* *Retorna un booleano que indica si la computadora gano
-	 * @returns gano - boolean*/
+	/**
+	 * Retorna un booleano que indica si la computadora gano
+	 * @return gano - boolean*/
 	public boolean Gano() {
 		return gano;
 	}
 	
-	/* *Retorna un booleano que indica si la computadora perdio*/
+	/**
+	 * Retorna un booleano que indica si la computadora perdio
+	 * @return perdio - boolean*/
 	public boolean Perdio() {
 		boolean b=false;
 		try {
@@ -94,7 +106,8 @@ public class Logica implements Serializable {
 		return b;
 	}
 	
-	/* *Vuelve el cursor a su posicion inicial: la raiz del arbol*/
+	/**
+	 * Vuelve el cursor a su posicion inicial: la raiz del arbol*/
 	public void reset() {
 		try {
 			gano=false;
@@ -103,7 +116,8 @@ public class Logica implements Serializable {
 			System.out.println("Error: "+e.getMessage());
 		}
 	}
-	/* *Guarda el estado actual del arbol en un archivo arbol.ser en
+	/**
+	 * Guarda el estado actual del arbol en un archivo arbol.ser en
 	 * el directorio de ejecucion actual*/
 	public void Guardar(){
 		try (
@@ -118,12 +132,16 @@ public class Logica implements Serializable {
 			    }
 	}
 
-	/* *Retorna un entero representando la cantidad de objetos almacenados en el arbol*/
+	/**
+	 * Retorna un entero representando la cantidad de objetos almacenados en el arbol
+	 * @return cantObjetos - int*/
 	public int cantObjetos() {
 		return cantObjetos;
 	}
 	
-	/* *Retorna un entero representando la cantidad de preguntas almacenadas en el arbol*/
+	/**
+	 * Retorna un entero representando la cantidad de preguntas almacenadas en el arbol
+	 * @return cantPreguntas - int*/
 	public int cantPreguntas() {
 		return cantObjetos-1;
 	}
@@ -138,7 +156,9 @@ public class Logica implements Serializable {
 			}
 	}
 	
-	/* *Retorna un entero representando la altura del arbol actual*/
+	/**
+	 * Retorna un entero representando la altura del arbol actual
+	 * @return altura - int*/
 	public int Altura() {
 		int h = 0;
 		try {
@@ -150,7 +170,8 @@ public class Logica implements Serializable {
 		return h; 
 	}
 	
-	/* *Recupera el estado interno del arbol guardado en arbol.ser en el directorio de
+	/**
+	 * Recupera el estado interno del arbol guardado en arbol.ser en el directorio de
 	 * ejecucion*/
 	public void recuperar(){
 		ArbolitoBinario<String > recuperado;
@@ -181,7 +202,9 @@ public class Logica implements Serializable {
 	private static final Logger fLogger =
 		    Logger.getLogger(Logica.class.getPackage().getName());
 	
-	/* *Retorna un String con una descripcion de los objetos almacenados*/
+	/**
+	 * Retorna un String con una descripcion de los objetos almacenados
+	 * @return descripcion - String*/
 	private String informacion(Position<String> p) throws InvalidPositionException{
 		String elemento= p.element();
 		try {
@@ -280,7 +303,8 @@ public class Logica implements Serializable {
 		return v;
 	}
 	
-	/* *Elimina el subarbol de raiz con rotulo nombre del arbol principal*/
+	/**
+	 * Elimina el subarbol de raiz con rotulo nombre del arbol principal*/
 	public void eliminarSubarbol(String nombre) {
 		Position<String> pos=buscar(nombre);
 		eliminar(pos);
