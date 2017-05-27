@@ -21,23 +21,13 @@ public class Borrar extends JDialog {
 	private JTextField txtquDeseaNodo;
 	public static String leyo;
 	private JComboBox Combo;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			Borrar dialog = new Borrar();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
+	private inteface gui;
+		
 	/**
 	 * Create the dialog.
 	 */
-	public Borrar() {
+	public Borrar(inteface h) {
+		gui=h;
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -95,6 +85,7 @@ public class Borrar extends JDialog {
 	public class OyenteBoton implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			leyo=txtquDeseaNodo.getSelectedText();
+			gui.borrar(leyo);
 			dispose();
 		}
 		}

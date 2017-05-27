@@ -257,6 +257,7 @@ public class Logica implements Serializable {
 		
 	}
 
+	
 	public void getInformacion (PositionList<String> lista)
 			throws InvalidPositionException {
 	try{	
@@ -271,14 +272,9 @@ public class Logica implements Serializable {
 	
 			if (A.hasRight(pos) ) {
 				NodosInternos(A.right(pos), lista);
-<<<<<<< Updated upstream
+
 				if(!A.isExternal(pos)){lista.addLast(pos.element());}
-=======
-				if(!A.isExternal(pos)){
-				lista.addLast(pos.element());}
->>>>>>> Stashed changes
-				
-			}
+				}
 			if (A.hasLeft(pos) ) {
 				NodosInternos(A.left(pos), lista);
 				
