@@ -9,6 +9,8 @@ public class ListaDoble<E> implements PositionList<E> {
 	NodoDoble<E> trailer;
 	int size;
 	
+	/**Crea una lista doble sin elementos
+	 */
 	public ListaDoble() {
 		header = new NodoDoble<E>(null);
 		trailer = new NodoDoble<E>(null);
@@ -149,6 +151,9 @@ public class ListaDoble<E> implements PositionList<E> {
 		return elem;
 	}
 	
+	/**Retorna un iterador con los elementos de la lista
+	 * @return iterador - Iterator<E>
+	 */
 	public Iterator<E> iterator() {
 		return new ElementIterator(this);
 	}
