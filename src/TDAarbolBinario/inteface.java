@@ -794,6 +794,7 @@ public class inteface implements ActionListener{
 			try{pila=Arbol.MostrarNodos();
 				while(!pila.isEmpty()){
 				MA.mostrar(pila.pop());
+				
 				}
 				MA.setVisible(true);}
 		catch(InvalidPositionException| EmptyListException | EmptyStackException |EmptyTreeException k)
