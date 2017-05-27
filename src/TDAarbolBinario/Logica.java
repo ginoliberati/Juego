@@ -26,7 +26,7 @@ public class Logica implements Serializable {
 	 
 	/* *Genera una pregunta dado el contenido de la posicion cursor*/
 	public String getPregunta() {
-		return "¿"+cursor.element()+"?";
+		return "\u00bf"+cursor.element()+"?";
 	}
 	
 	public String getElement() {
@@ -103,25 +103,27 @@ public class Logica implements Serializable {
 			System.out.println("Error: "+e.getMessage());
 		}
 	}
+	/* *Guarda el estado actual del arbol en un archivo arbol.ser en
+	 * el directorio de ejecucion actual*/
 	public void Guardar(){
 		try (
-			      OutputStream file = new FileOutputStream("/Users/GINO/Desktop/hola.ser");
+			      OutputStream file = new FileOutputStream("arbol.ser");
 			      OutputStream buffer = new BufferedOutputStream(file);
 			      ObjectOutput output = new ObjectOutputStream(buffer);
 			    ){
 			     output.writeObject(A);
-			     System.out.println("hola");
 			    }  
 			    catch(IOException ex){
 			      fLogger.log(Level.SEVERE, "Cannot perform output.", ex);
 			    }
 	}
 
-	// esto es nuevo
+	/* *Retorna un entero representando la cantidad de objetos almacenados en el arbol*/
 	public int cantObjetos() {
 		return cantObjetos;
 	}
 	
+	/* *Retorna un entero representando la cantidad de preguntas almacenadas en el arbol*/
 	public int cantPreguntas() {
 		return cantObjetos-1;
 	}
@@ -135,7 +137,8 @@ public class Logica implements Serializable {
 			return 1+Profundidad(n.getParent());
 			}
 	}
-
+	
+	/* *Retorna un entero representando la altura del arbol actual*/
 	public int Altura() {
 		int h = 0;
 		try {
@@ -146,10 +149,13 @@ public class Logica implements Serializable {
 		}
 		return h; 
 	}
+	
+	/* *Recupera el estado interno del arbol guardado en arbol.ser en el directorio de
+	 * ejecucion*/
 	public void recuperar(){
 		ArbolitoBinario<String > recuperado;
 		try(
-			      InputStream file = new FileInputStream("/Users/GINO/Desktop/hola.ser");
+			      InputStream file = new FileInputStream("arbol.ser");
 			      InputStream buffer = new BufferedInputStream(file);
 			      ObjectInput input = new ObjectInputStream (buffer);
 			    ){
@@ -174,7 +180,8 @@ public class Logica implements Serializable {
 	
 	private static final Logger fLogger =
 		    Logger.getLogger(Logica.class.getPackage().getName());
-
+	
+	/* *Retorna un String con una descripcion de los objetos almacenados*/
 	private String informacion(Position<String> p) throws InvalidPositionException{
 		String elemento= p.element();
 		try {
@@ -241,8 +248,7 @@ public class Logica implements Serializable {
 	
 			if (A.hasRight(pos) ) {
 				NodosInternos(A.right(pos), lista);
-				if(!A.isExternal(pos)){System.out.println("pene");
-				lista.addLast(pos.element());}
+				if(!A.isExternal(pos)){lista.addLast(pos.element());}
 				
 			}
 			if (A.hasLeft(pos) ) {
@@ -274,6 +280,7 @@ public class Logica implements Serializable {
 		return v;
 	}
 	
+	/* *Elimina el subarbol de raiz con rotulo nombre del arbol principal*/
 	public void eliminarSubarbol(String nombre) {
 		Position<String> pos=buscar(nombre);
 		eliminar(pos);
@@ -286,6 +293,7 @@ public class Logica implements Serializable {
 					if (A.isExternal(A.left(pos))) {
 						A.replace(pos, A.left(pos).element());
 						A.remove(A.left(pos));
+						cantObjetos--;
 					} else {
 						eliminar(A.left(pos));
 						eliminar(pos);
@@ -295,6 +303,7 @@ public class Logica implements Serializable {
 					if (A.isExternal(A.right(pos))) {
 						A.replace(pos, A.right(pos).element());
 						A.remove(A.right(pos));
+						cantObjetos--;
 					} else {
 						eliminar(A.left(pos));
 						eliminar(pos);
