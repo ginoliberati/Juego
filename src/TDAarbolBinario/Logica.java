@@ -300,13 +300,16 @@ public class Logica implements Serializable {
 		}
 	
 	private Position<String> buscar(String nombre) {
-		Position<String> v=null;
-		for (Position<String> e:A.positions()) {
-			if (e.element()==nombre) {
-				v=e;
-			}
+		Iterator<Position<String>> it=A.positions().iterator();
+		Position<String> pos=null; boolean encontro=false;
+		
+		while (it.hasNext() && !encontro) {
+			pos=it.next();
+			System.out.println(pos.element());
+			if (pos.element()==nombre) 
+				encontro=true;
 		}
-		return v;
+		return pos;
 	}
 	
 	/**
