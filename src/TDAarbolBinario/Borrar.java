@@ -84,7 +84,8 @@ public class Borrar extends JDialog {
 	public String leyo(){return leyo;}
 	public class OyenteBoton implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			leyo=txtquDeseaNodo.getSelectedText();
+			leyo=(String)Combo.getSelectedItem();
+			System.out.println(leyo);
 			gui.borrar(leyo);
 			dispose();
 		}

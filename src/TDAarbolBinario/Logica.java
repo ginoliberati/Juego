@@ -305,7 +305,6 @@ public class Logica implements Serializable {
 		
 		while (it.hasNext() && !encontro) {
 			pos=it.next();
-			System.out.println(pos.element());
 			if (pos.element()==nombre) 
 				encontro=true;
 		}

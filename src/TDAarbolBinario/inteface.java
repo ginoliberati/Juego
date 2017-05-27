@@ -79,6 +79,7 @@ public class inteface implements ActionListener{
 		frmAdivinador = new JFrame();
 		frmAdivinador.setForeground(Color.BLUE);
 		frmAdivinador.setTitle("Adivinador");
+		
 		frmAdivinador.getContentPane().setForeground(Color.BLUE);
 		frmAdivinador.setBounds(100, 100, 563, 603);
 		frmAdivinador.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -413,7 +414,7 @@ public class inteface implements ActionListener{
 	
 	if(e.getSource()==Nodoborrar){
 		Borrar venta=new Borrar(inteface.this);
-		String lei;
+	
 	try{	PositionList<String> lista=Arbol.Internos();
 			
 			while(!lista.isEmpty())
@@ -423,11 +424,10 @@ public class inteface implements ActionListener{
 		
 	catch(InvalidPositionException| EmptyListException  |EmptyTreeException k)
 	{System.out.println(k.getMessage());}
-	lei=venta.leyo();
-	
 	venta.setVisible(true);}
 	}
-		public void borrar(String h){Arbol.eliminarSubarbol(h);}
+		public void borrar(String h){System.out.println(h);
+			Arbol.eliminarSubarbol(h);}
 		private void Actualizar(){
 			textField_2.setText("Cant. de Preg. Almacendas="+Arbol.cantPreguntas());
 			textField.setText("Tamaño del Arbol="+Arbol.Altura());
