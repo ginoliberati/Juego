@@ -427,7 +427,8 @@ public class inteface implements ActionListener{
 	venta.setVisible(true);}
 	}
 		public void borrar(String h){System.out.println(h);
-			Arbol.eliminarSubarbol(h);}
+			Arbol.eliminarSubarbol(h);
+			Actualizar();}
 		private void Actualizar(){
 			textField_2.setText("Cant. de Preg. Almacendas="+Arbol.cantPreguntas());
 			textField.setText("Tamaño del Arbol="+Arbol.Altura());

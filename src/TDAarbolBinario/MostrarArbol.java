@@ -78,6 +78,6 @@ public class MostrarArbol extends JDialog{
 	
 
 		public class OyenteBoton implements ActionListener {
-			public void actionPerformed(ActionEvent e) {}
+			public void actionPerformed(ActionEvent e) {dispose();}
 }
 }
