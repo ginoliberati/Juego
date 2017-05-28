@@ -217,7 +217,7 @@ public class Logica implements Serializable {
 						
 					}
 					else {
-						elemento+=" no "+padre.element();	
+						elemento+=", no "+padre.element();	
 						
 					}
 				}
@@ -227,7 +227,7 @@ public class Logica implements Serializable {
 						
 					}
 					else {
-						elemento+=" "+padre.element();
+						elemento+=", "+padre.element();
 						
 					}
 				}

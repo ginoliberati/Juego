@@ -36,7 +36,7 @@ public class Borrar extends JDialog {
 		 Combo = new JComboBox();
 		
 		txtquDeseaNodo = new JTextField();
-		txtquDeseaNodo.setText("¿Qué nodo desea eliminar?");
+		txtquDeseaNodo.setText("\u00bfQu\u00e9 nodo desea eliminar?");
 		txtquDeseaNodo.setColumns(10);
 		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
 		gl_contentPanel.setHorizontalGroup(
