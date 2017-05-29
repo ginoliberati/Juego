@@ -273,7 +273,7 @@ public class Logica implements Serializable {
 			if (A.hasRight(pos) ) {
 				NodosInternos(A.right(pos), lista);
 
-				if(!A.isExternal(pos)){lista.addLast(pos.element());}
+				if(!A.isExternal(pos)&&!A.isRoot(pos)){lista.addLast(pos.element());}
 				}
 			if (A.hasLeft(pos) ) {
 				NodosInternos(A.left(pos), lista);
