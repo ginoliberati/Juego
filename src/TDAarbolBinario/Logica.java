@@ -183,6 +183,7 @@ public class Logica implements Serializable {
 			      InputStream file = new FileInputStream("arbol.ser");
 			      InputStream buffer = new BufferedInputStream(file);
 			      ObjectInput input = new ObjectInputStream (buffer);
+
 			    ){
 			      //deserialize the List
 			 recuperado = (ArbolitoBinario<String>)input.readObject();
@@ -265,7 +266,11 @@ public class Logica implements Serializable {
 		
 	}
 
-	
+	/**
+	 * Modica la lista pasada por parametro agregando las oraciones de cada hoja.
+	 * @param lista
+	 * @throws InvalidPositionException
+	 */
 	public void getInformacion (PositionList<String> lista)
 			throws InvalidPositionException {
 	try{	
@@ -292,6 +297,13 @@ public class Logica implements Serializable {
 		
 	}
 			
+	/**
+	 * Retorna un pila con todos los nodos internos invertidos.
+	 * @return Stack
+	 * @throws InvalidPositionException
+	 * @throws EmptyListException
+	 * @throws EmptyTreeException
+	 */
 	public TDAPilaEnlazada.Stack<String> MostrarNodos()
 				throws InvalidPositionException, EmptyListException, EmptyTreeException {
 		TDAPilaEnlazada.Stack<String> pila=new PilaConEnlaces<String>();
@@ -301,6 +313,11 @@ public class Logica implements Serializable {
 								lista.remove(lista.first());}
 		return pila;
 	}
+	/**
+	 * Devuelve una lista con todos los NodosInternos
+	 * @return PositonList
+	 * @throws EmptyTreeException
+	 */
 	public PositionList<String> Internos() throws EmptyTreeException{
 		PositionList<String> lista=new ListaDoble<String>();
 		NodosInternos(A.root(),lista);
