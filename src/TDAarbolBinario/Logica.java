@@ -120,16 +120,19 @@ public class Logica implements Serializable {
 	 * Guarda el estado actual del arbol en un archivo arbol.ser en
 	 * el directorio de ejecucion actual*/
 	public void Guardar(){
+	
 		try (
 			      OutputStream file = new FileOutputStream("arbol.ser");
 			      OutputStream buffer = new BufferedOutputStream(file);
 			      ObjectOutput output = new ObjectOutputStream(buffer);
-			    ){
+			){
 			     output.writeObject(A);
+			    
 			    }  
 			    catch(IOException ex){
 			      fLogger.log(Level.SEVERE, "Cannot perform output.", ex);
 			    }
+		
 	}
 
 	/**
@@ -175,25 +178,33 @@ public class Logica implements Serializable {
 	 * ejecucion*/
 	public void recuperar(){
 		ArbolitoBinario<String > recuperado;
+		
 		try(
 			      InputStream file = new FileInputStream("arbol.ser");
 			      InputStream buffer = new BufferedInputStream(file);
 			      ObjectInput input = new ObjectInputStream (buffer);
+				
+				InputStream file2 = new FileInputStream("Ente.ser");
+			      InputStream buffer2 = new BufferedInputStream(file2);
+			      ObjectInput input2 = new ObjectInputStream (buffer2);
 			    ){
 			      //deserialize the List
 			 recuperado = (ArbolitoBinario<String>)input.readObject();
-			      //display its data
+			 
+			 //display its data
 			      for(String quark: recuperado){
 			        System.out.println("Recovered Quark: " + quark);
 			      }
 			    }
 			    catch(ClassNotFoundException ex){
 			      fLogger.log(Level.SEVERE, "Cannot perform input. Class not found.", ex);
-			      recuperado=null;
+			     recuperado=null;
+			     
 			    }
 			    catch(IOException ex){
 			      fLogger.log(Level.SEVERE, "Cannot perform input.", ex);
 			      recuperado=null;
+			     
 			    }
 		A=recuperado;
 		

@@ -427,6 +427,7 @@ public class inteface implements ActionListener{
 	venta.setVisible(true);}
 	
 	if(e.getSource()==reset){Arbol.reset();
+							Mostrador.setText(Arbol.getPregunta());
 								Actualizar();}
 	
 	}
