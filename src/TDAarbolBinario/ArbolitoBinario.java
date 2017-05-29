@@ -218,22 +218,41 @@ public class ArbolitoBinario<E> implements ArbolBinario<E>,Serializable{
 	
 	/*Agrega el arbol binario T1 como hijo izquierdo del nodo v, y el arbol binario T2 como hijo derecho de v*/
 	public void attach(Position<E> v, ArbolBinario<E> T1, ArbolBinario<E> T2) throws InvalidPositionException {
-		BTnode<E> nod = checkPosition(v);
-		
-		if (!(nod.getLeft()==null && nod.getRigth()==null)) {
-			throw new InvalidPositionException("El nodo pasado por parametro no es hoja.");
-		}
-		
 		try {
-			BTnode<E> root1=checkPosition(T1.root());
-			BTnode<E> root2=checkPosition(T2.root());
-			nod.setLeft(root1);
-			nod.setRigth(root2);
-		}
-		catch (EmptyTreeException e) {
-			throw new InvalidPositionException("El arbol pasado por parametro esta vacio.");
+			BTnode<E> nodo=checkPosition(v);
+			BTnode<E> raizT1= new BTnode(T1.root().element(), null, null, null);
+			BTnode<E> raizT2= new BTnode(T1.root().element(), null, null, null);
+			
+			nodo.setLeft(raizT1); 
+			nodo.setRigth(raizT2);
+			raizT1.setParent(nodo);
+			raizT2.setParent(nodo);
+			
+			CopiarArbol(T1, T1.root(), raizT1);
+			CopiarArbol(T2, T2.root(), raizT2);
+		} catch(EmptyTreeException e) {
+			System.out.println("El arbol esta vacio");
+		} catch(BoundaryViolationException e) {
+			System.out.println("Fuera de limite");
 		}
 		
+	}
+	
+	private void CopiarArbol(ArbolBinario<E> A, Position<E> raizOriginal, BTnode<E> nodo) throws InvalidPositionException, BoundaryViolationException {
+		if (!A.isExternal(raizOriginal)) {
+			if (A.left(raizOriginal)!=null) {
+				BTnode<E> nodoIzq = new BTnode(A.left(raizOriginal).element(), null, null, null);
+				nodo.setLeft(nodoIzq);
+				nodoIzq.setParent(nodo);
+				CopiarArbol(A, A.left(raizOriginal), nodoIzq);
+			}
+			if (A.right(raizOriginal)!=null) {
+				BTnode<E> nodoDer = new BTnode(A.right(raizOriginal).element(), null, null, null);
+				nodo.setRigth(nodoDer);
+				nodoDer.setParent(nodo);
+				CopiarArbol(A, A.right(raizOriginal), nodoDer);
+			}
 		}
+	}
 	
 }
