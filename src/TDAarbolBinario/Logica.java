@@ -183,10 +183,6 @@ public class Logica implements Serializable {
 			      InputStream file = new FileInputStream("arbol.ser");
 			      InputStream buffer = new BufferedInputStream(file);
 			      ObjectInput input = new ObjectInputStream (buffer);
-				
-				InputStream file2 = new FileInputStream("Ente.ser");
-			      InputStream buffer2 = new BufferedInputStream(file2);
-			      ObjectInput input2 = new ObjectInputStream (buffer2);
 			    ){
 			      //deserialize the List
 			 recuperado = (ArbolitoBinario<String>)input.readObject();
@@ -207,6 +203,7 @@ public class Logica implements Serializable {
 			     
 			    }
 		A=recuperado;
+		cantObjetos=cantidadObjetos();
 		
 	}
 	
@@ -327,6 +324,7 @@ public class Logica implements Serializable {
 	public void eliminarSubarbol(String nombre) {
 		Position<String> pos=buscar(nombre);
 		eliminar(pos);
+		cantObjetos=cantidadObjetos();
 	}
 	
 	private void eliminar(Position<String> pos) {
@@ -336,7 +334,6 @@ public class Logica implements Serializable {
 					if (A.isExternal(A.left(pos))) {
 						A.replace(pos, A.left(pos).element());
 						A.remove(A.left(pos));
-						cantObjetos--;
 					} else {
 						eliminar(A.left(pos));
 						eliminar(pos);
@@ -346,7 +343,6 @@ public class Logica implements Serializable {
 					if (A.isExternal(A.right(pos))) {
 						A.replace(pos, A.right(pos).element());
 						A.remove(A.right(pos));
-						cantObjetos--;
 					} else {
 						eliminar(A.right(pos));
 						eliminar(pos);
@@ -358,5 +354,18 @@ public class Logica implements Serializable {
 		}
 	}
 	
+	private int cantidadObjetos() {
+		int cant=0;
+		try {
+			for (Position<String> pos:A.positions()) {
+				if (A.isExternal(pos)) 
+					cant++;
+			}
+		} catch(InvalidPositionException e) {
+			System.out.println("Error: "+e.getMessage());
+		}
+		
+		return cant;
+	}
 }
 	
