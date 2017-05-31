@@ -318,8 +318,10 @@ public class Logica implements Serializable {
 		TDAPilaEnlazada.Stack<String> pila=new PilaConEnlaces<String>();
 		PositionList<String> lista=new ListaDoble<String>();
 		NodosInternos(A.root(),lista);
+		pila.push(A.root().element());
 		while(!lista.isEmpty()){pila.push(lista.first().element());
 								lista.remove(lista.first());}
+		
 		return pila;
 	}
 	/**
