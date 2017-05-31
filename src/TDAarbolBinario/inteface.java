@@ -101,7 +101,7 @@ public class inteface implements ActionListener{
 		textField.setVisible(false);
 
 		textField.setColumns(10);
-		textField.setText("Tamaño del Arbol=0");
+		textField.setText("Altura del Arbol=0");
 		textField.setVisible(false);
 		
 		textField_1 = new JTextField();
@@ -153,7 +153,7 @@ public class inteface implements ActionListener{
 		oraciones.addActionListener(this);
 		oraciones.setVisible(false);
 		
-		Nodoborrar = new JButton("Borrar Nodo");
+		Nodoborrar = new JButton("Borrar Subarbol");
 		Nodoborrar.setVisible(false);
 		Nodoborrar.addActionListener(this);
 		
@@ -251,7 +251,7 @@ public class inteface implements ActionListener{
 		Ventani.setVisible(false);
 		
 		Aparicion = new JTextField();
-		Aparicion.setText("¿En que pensabas?\n");
+		Aparicion.setText("\u00bfEn qu\u00e9 pensabas?\n");
 		Aparicion.setEditable(false);
 		Aparicion.setColumns(10);
 		
@@ -259,7 +259,7 @@ public class inteface implements ActionListener{
 		Resp1.setColumns(10);
 		
 		Resp2 = new JTextField();
-		Resp2.setText("¿Qué diferencia tiene con?");
+		Resp2.setText("\u00bfQu\u00e9 diferencia tiene con?");
 		Resp2.setEditable(false);
 		Resp2.setColumns(10);
 		
@@ -344,7 +344,7 @@ public class inteface implements ActionListener{
 	
 		if(e.getSource()==BotonNO){
 			if(!Arbol.Perdio()){Arbol.No();Mostrador.setText(Arbol.getPregunta());}
-			else{Resp2.setText("¿Qué diferencia tiene con "+Arbol.getElement()+"?"); 
+			else{Resp2.setText("\u00bfQu\u00e9 diferencia tiene con "+Arbol.getElement()+"?"); 
 				 Ventani.setVisible(true);}
 			}
 		
@@ -377,9 +377,8 @@ public class inteface implements ActionListener{
 				}
 			 else Mostrador.setText(Arbol.getPregunta());}
 		
-		if(e.getSource()==Salir){System.out.println(" hola");
-									Arbol.Guardar();
-								 }
+		if(e.getSource()==Salir){Arbol.Guardar();}
+		
 		if(e.getSource()==oraciones){
 			DA=new MostrarArbol();
 			PositionList<String> lista= new ListaDoble<String>();
@@ -446,7 +445,7 @@ public class inteface implements ActionListener{
 		/*Actualiza todos los textos con los datos de altura, cantidad de preguntas, y objetos.*/
 		private void Actualizar(){
 			textField_2.setText("Cant. de Preg. Almacendas="+Arbol.cantPreguntas());
-			textField.setText("Tamaño del Arbol="+Arbol.Altura());
+			textField.setText("Altura del Arbol="+Arbol.Altura());
 			textField_1.setText("Cant. de Obj. Almacenados="+Arbol.cantObjetos());}
 	}
 
