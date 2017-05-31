@@ -238,6 +238,11 @@ public class ArbolitoBinario<E> implements ArbolBinario<E>,Serializable{
 		
 	}
 	
+	/*CB:Si raizOriginal es nodo externo de A, no pasa nada.
+	 *CR:Si raizOriginal tiene hijo izquierdo, lo clono y lo asigno como hijo izq.
+	 *de nod, luego llamo a CopiarArbol de A, el hijo izq de raizOriginal y su clon.
+	 *Si raizOriginal tiene hijo derecho, lo clono y lo asigno como hijo der. de nod,
+	 *luego llamo a CopiarArbol de A, el hijo der de raizOriginal y su clon*/
 	private void CopiarArbol(ArbolBinario<E> A, Position<E> raizOriginal, BTnode<E> nodo) throws InvalidPositionException, BoundaryViolationException {
 		if (!A.isExternal(raizOriginal)) {
 			if (A.left(raizOriginal)!=null) {

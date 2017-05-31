@@ -356,6 +356,13 @@ public class Logica implements Serializable {
 		cantObjetos=cantidadObjetos();
 	}
 	
+	/*CB: Si pos es externo, no pasa nada.
+	 *CB1: Si el hijo izquierdo de pos es externo, reemplazo pos con su hijo izq.
+	 *CR1: Si el hijo izquierdo de pos no es externo, llamo a eliminar del hijo izq.
+	 *de pos, y luego a eliminar de pos
+	 *CB2: Si el hijo derecho de pos es externo, reemplazo pos con su hijo der.
+	 *CR2: Si el hijo derecho de pos no es externo, llamo a eliminar del hijo der.
+	 *de pos, y luego a eliminar de pos*/
 	private void eliminar(Position<String> pos) {
 		try {
 			if (!A.isExternal(pos)){
