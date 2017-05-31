@@ -214,6 +214,8 @@ public class Logica implements Serializable {
 	/**
 	 * Retorna un String con una descripcion de los objetos almacenados
 	 * @return descripcion - String*/
+	/*desde la posicion pasada por parametro, arma la oracion, sabiendo quien es el padre del nodo, y sabiendo si la posicion es hijo 
+	izquierdo o derecho*/ 
 	private String informacion(Position<String> p) throws InvalidPositionException{
 		String elemento= p.element();
 		try {
@@ -250,6 +252,9 @@ public class Logica implements Serializable {
 		return elemento;
 	}
 
+	/*este recorrido en pre orden, agrega al final de la lista pasada como parametro, todos los nodo externos.
+	 * el mismo es de manera recursiva.
+	 */
 	private void preOrdenInfo (Position<String> pos, PositionList<String> lista) {
 		try{	if (A.isExternal(pos)) {
 				lista.addLast(informacion(pos));}
@@ -271,6 +276,7 @@ public class Logica implements Serializable {
 	 * @param lista
 	 * @throws InvalidPositionException
 	 */
+	/*llama a la recursion, y modifica la lista pasada por parametro.*/
 	public void getInformacion (PositionList<String> lista)
 			throws InvalidPositionException {
 	try{	
@@ -280,6 +286,7 @@ public class Logica implements Serializable {
 		catch(EmptyTreeException e){System.out.println(e.getMessage());}
 	}
 	
+	/* a traves de la recursion, recorre todo el arbol, y agrega a la lista los nodos internos.*/
 	private void NodosInternos(Position<String> pos, PositionList<String> lista) {
 		try{	if (A.isExternal(pos)) {}
 	
@@ -304,6 +311,8 @@ public class Logica implements Serializable {
 	 * @throws EmptyListException
 	 * @throws EmptyTreeException
 	 */
+	
+	/*devuele una pila con todos los nodos internos, para de esta manerla devolverla invertida*/
 	public TDAPilaEnlazada.Stack<String> MostrarNodos()
 				throws InvalidPositionException, EmptyListException, EmptyTreeException {
 		TDAPilaEnlazada.Stack<String> pila=new PilaConEnlaces<String>();
@@ -318,6 +327,7 @@ public class Logica implements Serializable {
 	 * @return PositonList
 	 * @throws EmptyTreeException
 	 */
+	/* devuelve una lista con todos lo nodos internos, llamando al metodo NodoInternos, con una lista y la raiz del arbol*/
 	public PositionList<String> Internos() throws EmptyTreeException{
 		PositionList<String> lista=new ListaDoble<String>();
 		NodosInternos(A.root(),lista);

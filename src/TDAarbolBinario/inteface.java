@@ -67,14 +67,13 @@ public class inteface implements ActionListener{
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
-	public inteface() {
+	/*crea la aplicacion.*/
+ 	public inteface() {
+
 		initialize();}
 
-	/**
-	 * Initialize the contents of the frame.
+	/*
+	 * Inicializa los botones y agrega las oyentes.
 	 */
 	private void initialize() {
 		frmAdivinador = new JFrame();
@@ -162,6 +161,8 @@ public class inteface implements ActionListener{
 		reset.setVisible(false);
 		reset.addActionListener(this);;
 		
+		/*agrega los botones y textos al frame principal.*/
+		
 		GroupLayout groupLayout = new GroupLayout(frmAdivinador.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -240,7 +241,7 @@ public class inteface implements ActionListener{
 		);
 		frmAdivinador.getContentPane().setLayout(groupLayout);
 		
-	/**
+	/*
 	 * Nuevo frame para obtener datos.
 	 */
 		Ventani = new JFrame();
@@ -271,6 +272,8 @@ public class inteface implements ActionListener{
 		
 		Aceptar2 = new JButton("Aceptar\n");
 		Aceptar2.addActionListener(this);
+		
+		/*Agragar los botones y los textos al frame*/
 		
 		GroupLayout groupLayou = new GroupLayout(Ventani.getContentPane());
 		groupLayou.setHorizontalGroup(
@@ -314,16 +317,15 @@ public class inteface implements ActionListener{
 	}
 	
 	
-	/* acciones de los botones*/
+	/* Acciones de los botones*/
 	
 	public void actionPerformed(ActionEvent e){
 		String evento=e.getActionCommand();
-	if(e.getSource()==BotonJugar){
-			 Arbol=new Logica(); 
-		
-			 textField.setVisible(true);
-				
-				textField_1.setVisible(true);
+	/*Inicia la logica y pone todos los botones en visbles.*/
+		if(e.getSource()==BotonJugar){
+			 	Arbol=new Logica(); 
+			 	textField.setVisible(true);
+			 	textField_1.setVisible(true);
 				textField_2.setVisible(true);
 				Mostrador.setVisible(true);
 				Mostrador.setText(Arbol.getPregunta());
@@ -339,13 +341,14 @@ public class inteface implements ActionListener{
 				reset.setVisible(true);
 				Actualizar();}
 		
-	if(e.getSource()==BotonNO){
+	
+		if(e.getSource()==BotonNO){
 			if(!Arbol.Perdio()){Arbol.No();Mostrador.setText(Arbol.getPregunta());}
 			else{Resp2.setText("¿Qué diferencia tiene con "+Arbol.getElement()+"?"); 
 				 Ventani.setVisible(true);}
 			}
 		
-	 if(e.getSource()==Aceptar2){
+		if(e.getSource()==Aceptar2){
 			resp2=Aparicion2.getText(); 
 			resp1=Resp1.getText();
 			Ventani.dispose();
@@ -357,7 +360,7 @@ public class inteface implements ActionListener{
 			Actualizar();
 			}
 			
-	if(e.getSource()==BotonSi){
+		if(e.getSource()==BotonSi){
 			Arbol.Si();
 			if(Arbol.Gano()){Mostrador.setText("Siempre Adivino :-)");
 				textField.setVisible(true);
@@ -377,11 +380,12 @@ public class inteface implements ActionListener{
 		if(e.getSource()==Salir){System.out.println(" hola");
 									Arbol.Guardar();
 								 }
-	if(e.getSource()==oraciones){
+		if(e.getSource()==oraciones){
 			DA=new MostrarArbol();
 			PositionList<String> lista= new ListaDoble<String>();
 			try {	 Arbol.getInformacion(lista);
 				Position<String> po=lista.first();
+				//pasa todos los string de la lista al cuadro de texto de la NuevaVentana creada.
 				while((po!=lista.last())){
 					DA.mostrar(po.element());
 					po=lista.next(po);
@@ -394,46 +398,52 @@ public class inteface implements ActionListener{
 		catch(EmptyListException | InvalidPositionException |BoundaryViolationException h){System.out.println(h.getMessage());}
 		}
 		
-	if(e.getSource()==MostrarNodos){
-			MA=new MostrarArbol();
-			TDAPilaEnlazada.Stack<String> pila= new PilaConEnlaces<String>();
-			try{pila=Arbol.MostrarNodos();
-				while(!pila.isEmpty()){
-				MA.mostrar(pila.pop());
-				}
-				MA.setVisible(true);}
-		catch(InvalidPositionException| EmptyListException | EmptyStackException |EmptyTreeException k)
+		if(e.getSource()==MostrarNodos){
+				MA=new MostrarArbol();
+				TDAPilaEnlazada.Stack<String> pila= new PilaConEnlaces<String>();
+				try{pila=Arbol.MostrarNodos();
+					//muetra todos los nodos internos del arbol, de manera invertida.
+					while(!pila.isEmpty()){
+						MA.mostrar(pila.pop());
+					}
+					MA.setVisible(true);}
+				catch(InvalidPositionException| EmptyListException | EmptyStackException |EmptyTreeException k)
 			{System.out.println(k.getMessage());}
-		}
+			}
 		
 		
-	if(e.getSource()==ArbolA){Arbol.recuperar();
+		if(e.getSource()==ArbolA){Arbol.recuperar();
 								 Arbol.reset();
 								 Mostrador.setText(Arbol.getPregunta());
 								 Actualizar();}
 	
-	if(e.getSource()==Nodoborrar){
-		Borrar venta=new Borrar(inteface.this);
+		if(e.getSource()==Nodoborrar){
+			/*crea la clase borrar que es un Jdialog con un comboBox con todos los nodos internos*/
+			Borrar venta=new Borrar(inteface.this);
 	
-	try{	PositionList<String> lista=Arbol.Internos();
-			
-			while(!lista.isEmpty())
-			{venta.mostrar(lista.first().element());
-				lista.remove(lista.first());}
-			}
+			try{	PositionList<String> lista=Arbol.Internos();
+				//agrega todos los nodos internos al combo box.
+				while(!lista.isEmpty())
+					{venta.mostrar(lista.first().element());
+						lista.remove(lista.first());}
+				}
 		
-	catch(InvalidPositionException| EmptyListException  |EmptyTreeException k)
-	{System.out.println(k.getMessage());}
-	venta.setVisible(true);}
+				catch(InvalidPositionException| EmptyListException  |EmptyTreeException k){
+						System.out.println(k.getMessage());
+						}
+			venta.setVisible(true);
+				}
 	
-	if(e.getSource()==reset){Arbol.reset();
+		if(e.getSource()==reset){Arbol.reset();
 							Mostrador.setText(Arbol.getPregunta());
 								Actualizar();}
 	
 	}
+		/*metodo invocado desde la clase borra cuando toca ok, con el string del comboBox.*/
 		public void borrar(String h){System.out.println(h);
 			Arbol.eliminarSubarbol(h);
 			Actualizar();}
+		/*Actualiza todos los textos con los datos de altura, cantidad de preguntas, y objetos.*/
 		private void Actualizar(){
 			textField_2.setText("Cant. de Preg. Almacendas="+Arbol.cantPreguntas());
 			textField.setText("Tamaño del Arbol="+Arbol.Altura());
