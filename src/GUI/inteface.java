@@ -1,6 +1,12 @@
-package TDAarbolBinario;
+package GUI;
+import TDAarbolBinario.*;
 import  TDAListaDoble.*;
 import TDAPilaEnlazada.*;
+import TDAarbolBinario.BoundaryViolationException;
+import TDAarbolBinario.EmptyTreeException;
+import TDAarbolBinario.InvalidPositionException;
+import TDAarbolBinario.Position;
+
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JSplitPane;

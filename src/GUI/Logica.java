@@ -1,4 +1,5 @@
-package TDAarbolBinario;
+package GUI;
+import TDAarbolBinario.*;
 import java.io.*;
 import java.util.*;
 import java.util.Stack;
@@ -6,6 +7,13 @@ import java.util.logging.*;
 import java.util.*;
 import TDAListaDoble.*;
 import TDAPilaEnlazada.*;
+import TDAarbolBinario.ArbolitoBinario;
+import TDAarbolBinario.BTnode;
+import TDAarbolBinario.BoundaryViolationException;
+import TDAarbolBinario.EmptyTreeException;
+import TDAarbolBinario.InvalidOperationException;
+import TDAarbolBinario.InvalidPositionException;
+import TDAarbolBinario.Position;
 public class Logica implements Serializable {
 	private ArbolitoBinario<String> A;
 	private Position<String> cursor;
@@ -14,7 +22,8 @@ public class Logica implements Serializable {
 	private int cantObjetos;
 	/**
 	 * Crea un arbol binario A con raiz "una guitarra", y la asigna a 
-	 * la posicion cursor*/
+	 * la posicion cursor
+	 * @author - Liberati Gino y Schroeder Franco*/
 	public Logica() {
 		try {
 			A = new ArbolitoBinario<String>();
@@ -27,21 +36,24 @@ public class Logica implements Serializable {
 	 
 	/**
 	 * Genera una pregunta dado el contenido de la posicion cursor
-	 * @return pregunta - String*/
+	 * @return pregunta - String
+	 * @author - Liberati Gino y Schroeder Franco*/
 	public String getPregunta() {
 		return "\u00bf"+cursor.element()+"?";
 	}
 	
 	/**
 	 * Devuelve el rotulo de la posicion cursor
-	 * @return rotulo - String*/
+	 * @return rotulo - String
+	 * @author - Liberati Gino y Schroeder Franco*/
 	public String getElement() {
 		return cursor.element();
 	}
 	
 	/**
 	 * Mueve la posicion cursor hacia su hijo derecho.
-	 * Se llama si el usuario responde "Si" en el juego.*/
+	 * Se llama si el usuario responde "Si" en el juego.
+	 * @author - Liberati Gino y Schroeder Franco*/
 	public void Si() {
 		try {
 			if (A.isExternal(cursor)){
@@ -57,7 +69,8 @@ public class Logica implements Serializable {
 	
 	/**
 	 * Mueve la posicion cursor hacia su hijo izquierdo.
-	 * Se llama si el usuario responde "No" en el juego*/
+	 * Se llama si el usuario responde "No" en el juego
+	 * @author - Liberati Gino y Schroeder Franco*/
 	public void No() {
 		try {
 			if (!A.isExternal(cursor)) {
@@ -73,7 +86,8 @@ public class Logica implements Serializable {
 	 * con el elemento de cursor como su hijo izquierdo. Reemplaza el elemento de 
 	 * cursor por diferencia
 	 * @param elem - String
-	 * @param diferencia - String*/
+	 * @param diferencia - String
+	 * @author - Liberati Gino y Schroeder Franco*/
 	public void Agregar(String elem, String diferencia) {
 		try {
 			A.addRight(cursor, elem);
@@ -87,14 +101,16 @@ public class Logica implements Serializable {
 	
 	/**
 	 * Retorna un booleano que indica si la computadora gano
-	 * @return gano - boolean*/
+	 * @return gano - boolean
+	 * @author - Liberati Gino y Schroeder Franco*/
 	public boolean Gano() {
 		return gano;
 	}
 	
 	/**
 	 * Retorna un booleano que indica si la computadora perdio
-	 * @return perdio - boolean*/
+	 * @return perdio - boolean
+	 * @author - Liberati Gino y Schroeder Franco*/
 	public boolean Perdio() {
 		boolean b=false;
 		try {
@@ -107,7 +123,8 @@ public class Logica implements Serializable {
 	}
 	
 	/**
-	 * Vuelve el cursor a su posicion inicial: la raiz del arbol*/
+	 * Vuelve el cursor a su posicion inicial: la raiz del arbol
+	 * @author - Liberati Gino y Schroeder Franco*/
 	public void reset() {
 		try {
 			gano=false;
@@ -118,7 +135,8 @@ public class Logica implements Serializable {
 	}
 	/**
 	 * Guarda el estado actual del arbol en un archivo arbol.ser en
-	 * el directorio de ejecucion actual*/
+	 * el directorio de ejecucion actual
+	 * @author - Liberati Gino y Schroeder Franco*/
 	public void Guardar(){
 	
 		try (
@@ -137,14 +155,16 @@ public class Logica implements Serializable {
 
 	/**
 	 * Retorna un entero representando la cantidad de objetos almacenados en el arbol
-	 * @return cantObjetos - int*/
+	 * @return cantObjetos - int
+	 * @author - Liberati Gino y Schroeder Franco*/
 	public int cantObjetos() {
 		return cantObjetos;
 	}
 	
 	/**
 	 * Retorna un entero representando la cantidad de preguntas almacenadas en el arbol
-	 * @return cantPreguntas - int*/
+	 * @return cantPreguntas - int
+	 * @author - Liberati Gino y Schroeder Franco*/
 	public int cantPreguntas() {
 		return cantObjetos-1;
 	}
@@ -161,7 +181,8 @@ public class Logica implements Serializable {
 	
 	/**
 	 * Retorna un entero representando la altura del arbol actual
-	 * @return altura - int*/
+	 * @return altura - int
+	 * @author - Liberati Gino y Schroeder Franco*/
 	public int Altura() {
 		int h = 0;
 		try {
@@ -175,7 +196,8 @@ public class Logica implements Serializable {
 	
 	/**
 	 * Recupera el estado interno del arbol guardado en arbol.ser en el directorio de
-	 * ejecucion*/
+	 * ejecucion
+	 * @author - Liberati Gino y Schroeder Franco*/
 	public void recuperar(){
 		ArbolitoBinario<String > recuperado;
 		
@@ -213,7 +235,8 @@ public class Logica implements Serializable {
 	
 	/**
 	 * Retorna un String con una descripcion de los objetos almacenados
-	 * @return descripcion - String*/
+	 * @return descripcion - String
+	 * @author - Liberati Gino y Schroeder Franco*/
 	/*desde la posicion pasada por parametro, arma la oracion, sabiendo quien es el padre del nodo, y sabiendo si la posicion es hijo 
 	izquierdo o derecho*/ 
 	private String informacion(Position<String> p) throws InvalidPositionException{
@@ -275,6 +298,7 @@ public class Logica implements Serializable {
 	 * Modica la lista pasada por parametro agregando las oraciones de cada hoja.
 	 * @param lista
 	 * @throws InvalidPositionException
+	 * @author - Liberati Gino y Schroeder Franco
 	 */
 	/*llama a la recursion, y modifica la lista pasada por parametro.*/
 	public void getInformacion (PositionList<String> lista)
@@ -310,6 +334,7 @@ public class Logica implements Serializable {
 	 * @throws InvalidPositionException
 	 * @throws EmptyListException
 	 * @throws EmptyTreeException
+	 * @author - Liberati Gino y Schroeder Franco
 	 */
 	
 	/*devuele una pila con todos los nodos internos, para de esta manerla devolverla invertida*/
@@ -328,6 +353,7 @@ public class Logica implements Serializable {
 	 * Devuelve una lista con todos los NodosInternos
 	 * @return PositonList
 	 * @throws EmptyTreeException
+	 * @author - Liberati Gino y Schroeder Franco
 	 */
 	/* devuelve una lista con todos lo nodos internos, llamando al metodo NodoInternos, con una lista y la raiz del arbol*/
 	public PositionList<String> Internos() throws EmptyTreeException{
@@ -349,7 +375,9 @@ public class Logica implements Serializable {
 	}
 	
 	/**
-	 * Elimina el subarbol de raiz con rotulo nombre del arbol principal*/
+	 * Elimina el subarbol de raiz con rotulo nombre del arbol principal
+	 * @param nombre - String
+	 * @author - Liberati Gino y Schroeder Franco*/
 	public void eliminarSubarbol(String nombre) {
 		Position<String> pos=buscar(nombre);
 		eliminar(pos);

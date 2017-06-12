@@ -10,6 +10,7 @@ public interface ArbolBinario<E> extends GTTree<E>,Serializable
 	 * @return Posici\u00f3n del hijo izquierdo de v.
 	 * @throws InvalidPositionException si la posici\u00f3n pasada por par\u00e1metro es inv\u00e1lida.
 	 * @throws BoundaryViolationException si v no tiene hijo izquierdo.
+	 * @author - Liberati Gino y Schroeder Franco
 	 */
 	public Position<E> left(Position<E> v) throws InvalidPositionException, BoundaryViolationException;
 	
@@ -20,6 +21,7 @@ public interface ArbolBinario<E> extends GTTree<E>,Serializable
 	 * @return Posici\u00f3n del hijo derecho de v.
 	 * @throws InvalidPositionException si la posici\u00f3n pasada por par\u00e1metro es inv\u00e1lida.
 	 * @throws BoundaryViolationException si v no tiene hijo derecho.
+	 * @author - Liberati Gino y Schroeder Franco
 	 */
 	public Position<E> right(Position<E> v)throws InvalidPositionException, BoundaryViolationException;
 
@@ -28,7 +30,8 @@ public interface ArbolBinario<E> extends GTTree<E>,Serializable
 	 * Testea si v tiene un hijo izquierdo.
 	 * @param v Posici\u00f3n de un nodo.
 	 * @return Verdadero si v tiene un hijo izquierdo y falso en caso contrario.
-	 * @throws InvalidPositionException si la posici\u00f3n pasada por par\u00e1metro es inv\u00e1lida.	
+	 * @throws InvalidPositionException si la posici\u00f3n pasada por par\u00e1metro es inv\u00e1lida.
+	 * @author - Liberati Gino y Schroeder Franco	
 	 */
 	public boolean hasLeft(Position<E> v) throws InvalidPositionException;
 	
@@ -38,7 +41,8 @@ public interface ArbolBinario<E> extends GTTree<E>,Serializable
 	 * Testea si v tiene un hijo derecho.
 	 * @param v Posici\u00f3n de un nodo.
 	 * @return Verdadero si v tiene un hijo derecho y falso en caso contrario.
-	 * @throws InvalidPositionException si la posici\u00f3n pasada por par\u00e1metro es inv\u00e1lida.	
+	 * @throws InvalidPositionException si la posici\u00f3n pasada por par\u00e1metro es inv\u00e1lida.
+	 * @author - Liberati Gino y Schroeder Franco	
 	 */
 	public boolean hasRight(Position<E> v) throws InvalidPositionException;
 	
@@ -47,6 +51,7 @@ public interface ArbolBinario<E> extends GTTree<E>,Serializable
 	 * Crea un nodo con r\u00f3tulo e como ra\u00edz del \u00e1rbol.
 	 * @param E R\u00f3tulo que se asignar\u00e1 a la ra\u00edz del \u00e1rbol.
 	 * @throws InvalidOperationException si el \u00e1rbol ya tiene un nodo ra\u00edz.
+	 * @author - Liberati Gino y Schroeder Franco
 	 */
 	public Position<E> createRoot(E r) throws InvalidOperationException;
 	
@@ -57,6 +62,7 @@ public interface ArbolBinario<E> extends GTTree<E>,Serializable
 	 * @return La posici\u00f3n del nuevo nodo creado.
 	 * @throws InvalidPositionException si la posici\u00f3n pasada por par\u00e1metro es inv\u00e1lida o el \u00e1rbol est\u00e1 vac\u00edo.
 	 * @throws InvalidOperationException si v ya tiene un hijo izquierdo.
+	 * @author - Liberati Gino y Schroeder Franco
 	 */
 	public Position<E> addLeft(Position<E> v, E r) throws InvalidOperationException, InvalidPositionException;
  
@@ -67,6 +73,7 @@ public interface ArbolBinario<E> extends GTTree<E>,Serializable
 	 * @return La posici\u00f3n del nuevo nodo creado.
 	 * @throws InvalidPositionException si la posici\u00f3n pasada por par\u00e1metro es inv\u00e1lida o el \u00e1rbol est\u00e1 vac\u00edo.
 	 * @throws InvalidOperationException si v ya tiene un hijo derecho.
+	 * @author - Liberati Gino y Schroeder Franco
 	 */
 	public Position<E> addRight(Position<E> v, E r) throws InvalidOperationException, InvalidPositionException;
     
@@ -76,19 +83,19 @@ public interface ArbolBinario<E> extends GTTree<E>,Serializable
 	 * @return el r\u00f3tulo del nodo eliminado.
      * @throws InvalidPositionException si la posici\u00f3n pasada por par\u00e1metro es inv\u00e1lida o el \u00e1rbol est\u00e1 vac\u00edo.
 	 * @throws InvalidOperationException si el nodo a eliminar tiene mas de un hijo.
+	 * @author - Liberati Gino y Schroeder Franco
      */
 	public E remove(Position<E> v) throws InvalidOperationException, InvalidPositionException;
 
 	
 	 /**
-	 * Inserta a los \u00e1rboles T1 y T2 como sub\u00e1rboles hijos de la hoja v (izquierdo y derecho respectivamente).
-	 * @param v Posici\u00f3n de una hoja del \u00e1rbol.
+	 * Inserta a los \u00e1rboles T1 y T2 como sub\u00e1rboles hijos de la hoja r (izquierdo y derecho respectivamente).
+	 * @param r Posici\u00f3n de una hoja del \u00e1rbol.
 	 * @param T1 \u00e1rbol binario a insertar como hijo izquierdo de v.
 	 * @param T2 \u00e1rbol binario a insertar como hijo derecho de v. 
-	 * @throws InvalidPositionException si la posici\u00f3n pasada por par\u00e1metro es inv\u00e1lida o el \u00e1rbol est\u00e1 vac\u00edo, o v no corresponde a una hoja.
+	 * @throws InvalidPositionException si la posici\u00f3n pasada por par\u00e1metro es inv\u00e1lida o el \u00e1rbol est\u00e1 vac\u00edo, o r no corresponde a una hoja.
+	 * @author - Liberati Gino y Schroeder Franco
 	 */
-	//Pone a T1 y a T2 como sub\u00e1rboles de la hoja v, izquierdo y derecho respectivamente, si v no era hoja da InvalidPositionException.
-	  
 	public void attach(Position<E> r, ArbolBinario<E> T1, ArbolBinario<E> T2) throws InvalidPositionException;
 	}
 

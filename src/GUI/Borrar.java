@@ -1,4 +1,5 @@
-package TDAarbolBinario;
+package GUI;
+import TDAarbolBinario.*;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;

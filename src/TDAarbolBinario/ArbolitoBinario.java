@@ -8,7 +8,9 @@ import TDAListaDoble.*;
 public class ArbolitoBinario<E> implements ArbolBinario<E>,Serializable{
 	protected BTnode<E> root;
 	protected int size;
-	/**Crea el Arbol Binario */
+	/**Crea el Arbol Binario 
+	 * @author - Liberati Gino y Schroeder Franco
+	 */
 	public ArbolitoBinario(){
 		root=null;
 		size=0;}

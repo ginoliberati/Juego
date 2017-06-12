@@ -6,6 +6,7 @@ public class Nodo<T> {
 	
 	/**Crea un nuevo nodo con rotulo e
 	 * @param e - T
+	 * @author - Liberati Gino y Schroeder Franco
 	 */
 	public Nodo(T e) {
 		elem=e;
@@ -14,6 +15,7 @@ public class Nodo<T> {
 	
 	/**Retorna el rotulo del Nodo
 	 * @return elem - T
+	 * @author - Liberati Gino y Schroeder Franco
 	 */
 	public T getElem() {
 		return elem;
@@ -21,6 +23,7 @@ public class Nodo<T> {
 	
 	/**Cambia el Nodo asociado por nod
 	 * @param nod - Nodo<T>
+	 * @author - Liberati Gino y Schroeder Franco
 	 */
 	public void setCompa(Nodo<T> nod) {
 		compa=nod;
@@ -28,6 +31,7 @@ public class Nodo<T> {
 	
 	/**Retorna el nodo asociado
 	 * @return compa - Nodo<T>
+	 * @author - Liberati Gino y Schroeder Franco
 	 */
 	public Nodo getCompa() {
 		return compa;

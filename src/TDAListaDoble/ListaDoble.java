@@ -10,6 +10,7 @@ public class ListaDoble<E> implements PositionList<E> {
 	int size;
 	
 	/**Crea una lista doble sin elementos
+	 * @author - Liberati Gino y Schroeder Franco
 	 */
 	public ListaDoble() {
 		header = new NodoDoble<E>(null);
