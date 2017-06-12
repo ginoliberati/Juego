@@ -8,7 +8,7 @@ import TDAListaDoble.*;
 public class ArbolitoBinario<E> implements ArbolBinario<E>,Serializable{
 	protected BTnode<E> root;
 	protected int size;
-	/*Crea el Arbol Binario */
+	/**Crea el Arbol Binario */
 	public ArbolitoBinario(){
 		root=null;
 		size=0;}
