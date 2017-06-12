@@ -5,9 +5,9 @@ import TDAarbolBinario.BoundaryViolationException;
 import TDAarbolBinario.InvalidPositionException;
 import TDAarbolBinario.Position;
 public class ListaDoble<E> implements PositionList<E> {
-	NodoDoble<E> header;
-	NodoDoble<E> trailer;
-	int size;
+	private NodoDoble<E> header;
+	private NodoDoble<E> trailer;
+	private int size;
 	
 	public ListaDoble() {
 		header = new NodoDoble<E>(null);
@@ -151,5 +151,9 @@ public class ListaDoble<E> implements PositionList<E> {
 	
 	public Iterator<E> iterator() {
 		return new ElementIterator(this);
+	}
+	
+	public Iterable<Position<E>> positions() {
+		return (Iterable<Position<E>>) this;
 	}
 }

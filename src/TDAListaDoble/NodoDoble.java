@@ -3,9 +3,9 @@ package TDAListaDoble;
 import TDAarbolBinario.Position;
 
 public class NodoDoble<E> implements Position<E> {
-	E elem;
-	NodoDoble<E> next;
-	NodoDoble<E> prev;
+	private E elem;
+	private NodoDoble<E> next;
+	private NodoDoble<E> prev;
 	
 	public NodoDoble(E e) {
 		elem=e;

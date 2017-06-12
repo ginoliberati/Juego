@@ -6,8 +6,8 @@ import TDAarbolBinario.BoundaryViolationException;
 import TDAarbolBinario.InvalidPositionException;
 import TDAarbolBinario.Position;
 public class ElementIterator<E> implements Iterator<E> {
-	PositionList<E> list;
-	Position<E> cursor;
+	private PositionList<E> list;
+	private Position<E> cursor;
 	
 	public ElementIterator(PositionList<E> l) {
 		try{

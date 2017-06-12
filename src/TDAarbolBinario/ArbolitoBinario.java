@@ -138,7 +138,7 @@ public class ArbolitoBinario<E> implements ArbolBinario<E>,Serializable{
 	}
 	
 	/*Chequea si la posicion v corresponde a un nodo del arbol, si es asi, lo retorna*/
-	public BTnode<E> checkPosition(Position<E> v) throws InvalidPositionException {
+	private BTnode<E> checkPosition(Position<E> v) throws InvalidPositionException {
 		if (v==null) {
 			throw new InvalidPositionException("El nodo pasado por parametro es nulo.");
 		}
