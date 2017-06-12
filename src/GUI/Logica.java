@@ -296,7 +296,7 @@ public class Logica implements Serializable {
 
 	/**
 	 * Modica la lista pasada por parametro agregando las oraciones de cada hoja.
-	 * @param lista
+	 * @param lista - PositionList<String>
 	 * @throws InvalidPositionException
 	 * @author - Liberati Gino y Schroeder Franco
 	 */
@@ -332,8 +332,8 @@ public class Logica implements Serializable {
 	 * Retorna un pila con todos los nodos internos invertidos.
 	 * @return Stack
 	 * @throws InvalidPositionException
-	 * @throws EmptyListException
-	 * @throws EmptyTreeException
+	 * @throws EmptyListException - Si la lista esta vacia
+	 * @throws EmptyTreeException - Si el arbol esta vacio
 	 * @author - Liberati Gino y Schroeder Franco
 	 */
 	
@@ -352,7 +352,7 @@ public class Logica implements Serializable {
 	/**
 	 * Devuelve una lista con todos los NodosInternos
 	 * @return PositonList
-	 * @throws EmptyTreeException
+	 * @throws EmptyTreeException - Si el arbol esta vacio
 	 * @author - Liberati Gino y Schroeder Franco
 	 */
 	/* devuelve una lista con todos lo nodos internos, llamando al metodo NodoInternos, con una lista y la raiz del arbol*/

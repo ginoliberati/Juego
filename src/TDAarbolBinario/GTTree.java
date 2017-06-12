@@ -30,6 +30,9 @@ public interface GTTree<E> extends Iterable<E>
 		/**
 		 * Devuelve una colecci\u00f3n iterable de las posiciones de los nodos del \u00e1rbol.
 		 * @return Colecci\u00f3n iterable de las posiciones de los nodos del \u00e1rbol.
+		 * @throws InvalidPositionException
+		 * @throws BoundaryViolationException
+		 * @throws EmptyTreeException
 		 * @author - Liberati Gino y Schroeder Franco
 		 */
 		public Iterable<Position<E>> positions() throws InvalidPositionException,BoundaryViolationException,EmptyTreeException;
@@ -57,7 +60,7 @@ public interface GTTree<E> extends Iterable<E>
 		 * @param v Posici\u00f3n de un nodo.
 		 * @return Posici\u00f3n del nodo padre del nodo correspondiente a la posici\u00f3n dada.
 		 * @throws InvalidPositionException si la posici\u00f3n pasada por par\u00e1metro es inv\u00e1lida.
-		 * @throws B oundaryViolationException si la posici\u00f3n pasada por par\u00e1metro corresponde a la ra\u00edz del \u00e1rbol.
+		 * @throws BoundaryViolationException si la posici\u00f3n pasada por par\u00e1metro corresponde a la ra\u00edz del \u00e1rbol.
 		 * @author - Liberati Gino y Schroeder Franco
 		 */
 		public Position<E> parent(Position<E> v) throws InvalidPositionException, BoundaryViolationException;

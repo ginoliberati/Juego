@@ -49,7 +49,8 @@ public interface ArbolBinario<E> extends GTTree<E>,Serializable
 	
 	 /**
 	 * Crea un nodo con r\u00f3tulo e como ra\u00edz del \u00e1rbol.
-	 * @param E R\u00f3tulo que se asignar\u00e1 a la ra\u00edz del \u00e1rbol.
+	 * @return raiz - Position<E>
+	 * @param r - R\u00f3tulo que se asignar\u00e1 a la ra\u00edz del \u00e1rbol.
 	 * @throws InvalidOperationException si el \u00e1rbol ya tiene un nodo ra\u00edz.
 	 * @author - Liberati Gino y Schroeder Franco
 	 */
