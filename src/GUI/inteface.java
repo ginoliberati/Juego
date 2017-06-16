@@ -1,4 +1,10 @@
 package GUI;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JDialog;
 import TDAarbolBinario.*;
 import  TDAListaDoble.*;
 import TDAPilaEnlazada.*;
@@ -8,6 +14,8 @@ import TDAarbolBinario.InvalidPositionException;
 import TDAarbolBinario.Position;
 
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
+
 import javax.swing.JFrame;
 import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
@@ -24,6 +32,10 @@ import java.awt.Button;
 import javax.swing.JTree;
 import javax.swing.JTextPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.EmptyBorder;
+
+import GUI.Borrar.OyenteBoton;
+
 import java.awt.Font;
 import javax.swing.JTextArea;
 import javax.swing.JComboBox;
@@ -55,7 +67,13 @@ public class inteface implements ActionListener{
 	private JButton oraciones;
 	private JButton Nodoborrar;
 	private JButton reset;
-
+	private final JPanel contentPanel = new JPanel();
+	private JTextField txtquDeseaNodo;
+	public static String leyo;
+	private JComboBox Combo;
+	private JDialog borrador;
+	private JButton okButton;
+	private JButton cancelButton;
 	/*
 	 * 
 	 */
@@ -274,7 +292,7 @@ public class inteface implements ActionListener{
 		
 		Aceptar1 = new JButton("Aceptar\n");
 		Aceptar1.addActionListener(this);
-		Aceptar1.setVisible(false);
+		Aceptar1.setVisible(true);
 		
 		Aceptar2 = new JButton("Aceptar\n");
 		Aceptar2.addActionListener(this);
@@ -320,7 +338,65 @@ public class inteface implements ActionListener{
 		);
 		Ventani.getContentPane().setLayout(groupLayou);
 
-	}
+		/* Interfaz Borrar*/
+		borrador=new JDialog();
+		borrador.setBounds(100, 100, 450, 300);
+		borrador.getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		borrador.getContentPane().add(contentPanel, BorderLayout.CENTER);
+		borrador.setVisible(false);
+		 Combo = new JComboBox();
+		
+		txtquDeseaNodo = new JTextField();
+		txtquDeseaNodo.setText("\u00bfQu\u00e9 nodo desea eliminar?");
+		txtquDeseaNodo.setColumns(10);
+		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
+		gl_contentPanel.setHorizontalGroup(
+			gl_contentPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPanel.createSequentialGroup()
+					.addGap(66)
+					.addComponent(Combo, 0, 292, Short.MAX_VALUE)
+					.addGap(82))
+				.addGroup(gl_contentPanel.createSequentialGroup()
+					.addGap(112)
+					.addComponent(txtquDeseaNodo, GroupLayout.PREFERRED_SIZE, 206, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(122, Short.MAX_VALUE))
+		);
+		gl_contentPanel.setVerticalGroup(
+			gl_contentPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_contentPanel.createSequentialGroup()
+					.addContainerGap(34, Short.MAX_VALUE)
+					.addComponent(txtquDeseaNodo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(Combo, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE)
+					.addGap(45))
+		);
+		contentPanel.setLayout(gl_contentPanel);
+		{
+			JPanel buttonPane = new JPanel();
+			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
+			borrador.getContentPane().add(buttonPane, BorderLayout.SOUTH);
+			{
+				okButton = new JButton("OK");
+				okButton.setActionCommand("OK");
+				okButton.addActionListener(this);
+				buttonPane.add(okButton);
+				borrador.getRootPane().setDefaultButton(okButton);
+			}
+			{
+				 cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(this);
+				cancelButton.setActionCommand("Cancel");
+				buttonPane.add(cancelButton);
+			}
+		}
+
+}
+	
+	
+	
+	
+	
 	
 	
 	/* Acciones de los botones*/
@@ -354,6 +430,13 @@ public class inteface implements ActionListener{
 				 Ventani.setVisible(true);}
 			}
 		
+		if(e.getSource()==Aceptar1){
+			//dispose();
+
+		}
+		
+		
+		
 		if(e.getSource()==Aceptar2){
 			resp2=Aparicion2.getText(); 
 			resp1=Resp1.getText();
@@ -364,6 +447,7 @@ public class inteface implements ActionListener{
 			Resp1.setText("");
 			Mostrador.setText(Arbol.getPregunta());
 			Actualizar();
+			Arbol.Guardar();
 			}
 			
 		if(e.getSource()==BotonSi){
@@ -424,28 +508,39 @@ public class inteface implements ActionListener{
 	
 		if(e.getSource()==Nodoborrar){
 			/*crea la clase borrar que es un Jdialog con un comboBox con todos los nodos internos*/
-			Borrar venta=new Borrar(inteface.this);
+			
 	
 			try{	PositionList<String> lista=Arbol.Internos();
 				//agrega todos los nodos internos al combo box.
-				while(!lista.isEmpty())
-					{venta.mostrar(lista.first().element());
-						lista.remove(lista.first());}
+				
+			while(!lista.isEmpty())
+					{Combo.addItem(lista.first().element());
+					System.out.println(lista.first().element());	
+					lista.remove(lista.first());}
 				}
 		
 				catch(InvalidPositionException| EmptyListException  |EmptyTreeException k){
 						System.out.println(k.getMessage());
 						}
-			venta.setVisible(true);
+			borrador.setVisible(true);
 				}
 	
 		if(e.getSource()==reset){Arbol.reset();
 							Mostrador.setText(Arbol.getPregunta());
 								Actualizar();}
+		
+		if(e.getSource()==okButton){
+			
+			borrar((String)Combo.getSelectedItem());
+			Combo.removeAllItems();
+			borrador.dispose();
+			
+		}
 	
 	}
 		/*metodo invocado desde la clase borra cuando toca ok, con el string del comboBox.*/
 		public void borrar(String h){System.out.println(h);
+			
 			Arbol.eliminarSubarbol(h);
 			Actualizar();}
 		/*Actualiza todos los textos con los datos de altura, cantidad de preguntas, y objetos.*/
