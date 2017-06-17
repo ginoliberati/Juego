@@ -5,9 +5,9 @@ import TDAarbolBinario.BoundaryViolationException;
 import TDAarbolBinario.InvalidPositionException;
 import TDAarbolBinario.Position;
 public class ListaDoble<E> implements PositionList<E> {
-	NodoDoble<E> header;
-	NodoDoble<E> trailer;
-	int size;
+	private NodoDoble<E> header;
+	private NodoDoble<E> trailer;
+	private int size;
 	
 	/**Crea una lista doble sin elementos
 	 * @author - Liberati Gino y Schroeder Franco
