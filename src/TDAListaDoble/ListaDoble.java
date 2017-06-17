@@ -83,6 +83,12 @@ public class ListaDoble<E> implements PositionList<E> {
 			if (p==null) {
 				throw new InvalidPositionException("La posicion es nula.");
 			}
+			if (p==header) {
+				throw new InvalidPositionException("La posicion es invalida.");
+			}
+			if (p==trailer) {
+				throw new InvalidPositionException("La posicion es invalida.");
+			}
 			
 			return (NodoDoble<E>) p;
 		} catch (ClassCastException e) {
@@ -128,6 +134,10 @@ public class ListaDoble<E> implements PositionList<E> {
 	}
 	
 	public E remove(Position<E> p) throws InvalidPositionException {
+		if (isEmpty()) {
+			throw new InvalidPositionException("La lista esta vacia.");
+		}
+		
 		NodoDoble<E> nod = checkPosition(p);
 		NodoDoble<E> aux = nod.getNext();
 		NodoDoble<E> aux2 = nod.getPrev();
@@ -144,6 +154,10 @@ public class ListaDoble<E> implements PositionList<E> {
 	}
 	
 	public E set(Position<E> p, E e) throws InvalidPositionException {
+		if (isEmpty()) {
+			throw new InvalidPositionException("La lista esta vacia.");
+		}
+		
 		NodoDoble<E> nod = checkPosition(p);
 		E elem = nod.element();
 		
@@ -157,5 +171,36 @@ public class ListaDoble<E> implements PositionList<E> {
 	 */
 	public Iterator<E> iterator() {
 		return new ElementIterator(this);
+	}
+	
+	public Iterable<Position<E>> positions() {
+		PositionList<Position<E>> lista = new ListaDoble<Position<E>>();
+		
+		if (!isEmpty()) {
+			Position<E> p=null;
+			try {
+				p = first();
+			} catch(EmptyListException e) {
+				System.out.println("Error");
+			}
+			
+			while (true) {
+				lista.addLast(p);
+				try {
+					if (p==last()) {
+						break;
+					}
+				} catch (EmptyListException z) {
+					System.out.println("Error");
+				}
+				try {
+					p=this.next(p);
+				} catch(InvalidPositionException | BoundaryViolationException i) {
+					System.out.println("Error");
+				}
+			}
+		}
+		
+		return lista;
 	}
 }

@@ -1,6 +1,7 @@
 package TDAListaDoble;
 
 import TDAarbolBinario.BoundaryViolationException;
+import java.util.Iterator;
 import TDAarbolBinario.InvalidPositionException;
 import TDAarbolBinario.Position;
 
@@ -82,4 +83,18 @@ public interface PositionList<E> extends Iterable<E> {
 	 * @author - Liberati Gino y Schroeder Franco
 	 */
 	public E set(Position<E> p, E e) throws InvalidPositionException;
+	
+	/**
+	 * Devuelve un un iterador de todos los elementos de la lista.
+	 * @return Un iterador de todos los elementos de la lista.
+	 * @author - Liberati Gino y Schroeder Franco
+	 */
+	public Iterator<E> iterator();
+	
+	/**
+	 * Devuelve una coleccion iterable de posiciones.
+	 * @return Una coleccion iterable de posiciones.
+	 * @author - Liberati Gino y Schroeder Franco
+	 */
+	public Iterable<Position<E>> positions();
 }
