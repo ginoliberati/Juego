@@ -290,11 +290,11 @@ public class inteface implements ActionListener{
 		Aparicion2 = new JTextField();
 		Aparicion2.setColumns(10);
 		
-		Aceptar1 = new JButton("Aceptar\n");
+		Aceptar1 = new JButton("Cancel");
 		Aceptar1.addActionListener(this);
 		Aceptar1.setVisible(true);
 		
-		Aceptar2 = new JButton("Aceptar\n");
+		Aceptar2 = new JButton("Aceptar");
 		Aceptar2.addActionListener(this);
 		
 		/*Agragar los botones y los textos al frame*/
@@ -303,21 +303,19 @@ public class inteface implements ActionListener{
 		groupLayou.setHorizontalGroup(
 			groupLayou.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayou.createSequentialGroup()
+					.addGap(41)
 					.addGroup(groupLayou.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayou.createSequentialGroup()
-							.addGap(41)
-							.addGroup(groupLayou.createParallelGroup(Alignment.LEADING)
-								.addComponent(Resp1, GroupLayout.PREFERRED_SIZE, 379, GroupLayout.PREFERRED_SIZE)
-								.addComponent(Aparicion, GroupLayout.PREFERRED_SIZE, 379, GroupLayout.PREFERRED_SIZE)
-								.addComponent(Resp2, GroupLayout.PREFERRED_SIZE, 379, GroupLayout.PREFERRED_SIZE)
-								.addComponent(Aparicion2, GroupLayout.PREFERRED_SIZE, 379, GroupLayout.PREFERRED_SIZE)))
-						.addGroup(groupLayou.createSequentialGroup()
-							.addGap(167)
-							.addComponent(Aceptar1))
-						.addGroup(groupLayou.createSequentialGroup()
-							.addGap(171)
-							.addComponent(Aceptar2, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)))
+						.addComponent(Resp1, GroupLayout.PREFERRED_SIZE, 379, GroupLayout.PREFERRED_SIZE)
+						.addComponent(Aparicion, GroupLayout.PREFERRED_SIZE, 379, GroupLayout.PREFERRED_SIZE)
+						.addComponent(Resp2, GroupLayout.PREFERRED_SIZE, 379, GroupLayout.PREFERRED_SIZE)
+						.addComponent(Aparicion2, GroupLayout.PREFERRED_SIZE, 379, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(30, Short.MAX_VALUE))
+				.addGroup(Alignment.TRAILING, groupLayou.createSequentialGroup()
+					.addContainerGap(98, Short.MAX_VALUE)
+					.addComponent(Aceptar1, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
+					.addGap(71)
+					.addComponent(Aceptar2, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
+					.addGap(89))
 		);
 		groupLayou.setVerticalGroup(
 			groupLayou.createParallelGroup(Alignment.LEADING)
@@ -326,14 +324,14 @@ public class inteface implements ActionListener{
 					.addComponent(Aparicion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(Resp1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(Aceptar1)
-					.addPreferredGap(ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
 					.addComponent(Resp2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(Aparicion2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(Aceptar2)
+					.addGroup(groupLayou.createParallelGroup(Alignment.BASELINE)
+						.addComponent(Aceptar2)
+						.addComponent(Aceptar1))
 					.addGap(17))
 		);
 		Ventani.getContentPane().setLayout(groupLayou);
@@ -431,7 +429,11 @@ public class inteface implements ActionListener{
 			}
 		
 		if(e.getSource()==Aceptar1){
-			//dispose();
+			Arbol.reset();
+			 Mostrador.setText(Arbol.getPregunta());
+			 Actualizar();
+			
+			Ventani.dispose();
 
 		}
 		
