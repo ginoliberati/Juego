@@ -34,7 +34,7 @@ import javax.swing.JTextPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
-import GUI.Borrar.OyenteBoton;
+
 
 import java.awt.Font;
 import javax.swing.JTextArea;
@@ -436,7 +436,9 @@ public class inteface implements ActionListener{
 			Ventani.dispose();
 
 		}
-		
+		if(e.getSource()== cancelButton){
+			borrador.dispose();
+		}
 		
 		
 		if(e.getSource()==Aceptar2){
